@@ -1,0 +1,1261 @@
+/* --- EMOZIONI STYLE.CSS --- */
+
+/* --- 1. VARIABLES Y FUENTES --- */
+@font-face {
+    font-family: 'Avenir';
+    src: url('../../rsc/font/Avenir.ttc') format('truetype-collection');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Vendetta';
+    src: url('../../rsc/font/Vendetta.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --font-primary: 'Avenir', sans-serif;
+    --font-display: 'Vendetta', cursive;
+
+    --color-primary: #56ABCF;
+    /* Cian */
+    --color-secondary: #444243;
+    /* Gris oscuro */
+    --color-text: #333;
+    --color-background: #FFFFFF;
+    --color-light-gray: #f4f4f4;
+
+    --header-height: 80px;
+}
+
+/* --- 2. RESET Y ESTILOS GLOBALES --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Aumentar el tamaño de los párrafos principales para legibilidad */
+.philosophy-content p,
+.feature p,
+.product-card p,
+.contact-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    /* Ajustar interlineado para el nuevo tamaño */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    color: var(--color-secondary);
+    font-weight: normal;
+}
+
+.section-title {
+    font-size: 5rem;
+    /* Aumentar tamaño para mayor impacto */
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-primary);
+    text-shadow: 4px 4px 0px var(--color-secondary), 8px 8px 15px rgba(0, 0, 0, 0.3);
+    /* Sombra más pronunciada */
+}
+
+/* --- 3. HEADER Y NAVEGACIÓN --- */
+.main-header {
+    position: fixed;
+    top: 1rem;
+    /* Margen superior para efecto flotante */
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 1200px;
+    height: calc(var(--header-height) - 10px);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Efecto cristalino */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50px;
+    /* Bordes súper redondeados */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transition: all 0.3s ease;
+}
+
+.main-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1rem;
+    gap: 2rem;
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.nav-center {
+    justify-content: center;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+.nav-left a {
+    text-decoration: none;
+    color: var(--color-secondary);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-left a:hover {
+    color: var(--color-primary);
+}
+
+.logo img {
+    height: 65px;
+    display: block;
+}
+
+/* Ocultar elementos de móvil en desktop */
+.logo-mobile,
+.main-nav .nav-links,
+.mobile-nav-toggle {
+    display: none;
+}
+
+
+
+
+.cta-button {
+    font-family: var(--font-primary);
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(86, 171, 207, 0.4);
+}
+
+/* Estilos para el botón de hamburguesa */
+.mobile-nav-toggle {
+    display: none;
+    /* Oculto en desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background: var(--color-secondary);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-secondary);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+/* Estado activo para la animación de la hamburguesa a "X" */
+.nav-open .hamburger {
+    background: transparent;
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(45deg);
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(-45deg);
+}
+
+
+/* --- 4. HERO SECTION --- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Overlay oscuro para legibilidad */
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: white;
+    -webkit-text-stroke: 1.5px white;
+    /* Creamos el contorno blanco */
+    margin-bottom: 1rem;
+    overflow: hidden;
+    /* Para una animación de entrada de texto limpia */
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- 5. SECCIONES GENERALES --- */
+section {
+    padding: 4rem 2rem;
+}
+
+.featured-products-section,
+.philosophy-section,
+.testimonials-section {
+    max-width: 100%;
+    /* Ocupar todo el ancho */
+    padding-left: calc((100% - 1200px) / 2);
+    padding-right: calc((100% - 1200px) / 2);
+    background-color: #f4f4f4;
+    background-image: url('../../rsc/img/stardust.png');
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+.featured-products-section .product-grid,
+.philosophy-section .philosophy-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- 6. TESTIMONIOS --- */
+.testimonials-section {
+    overflow-x: hidden;
+    min-height: 100vh;
+    /* Ensure enough height for pinning */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem;
+}
+
+.testimonial-item {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    padding: 2rem;
+    background-color: var(--color-primary);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(86, 171, 207, 0.4);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 15px 35px rgba(86, 171, 207, 0.5);
+}
+
+.testimonial-item.testimonial-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.testimonial-item.testimonial-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hacer visible el primer testimonio por defecto */
+.testimonial-item:first-child {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial-video-wrapper {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    height: 400px;
+    /* Altura fija para los videos */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.testimonial-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+    color: white;
+}
+
+.testimonial-content p {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    /* Ajuste para que sea más legible */
+    line-height: 1.8;
+    color: white;
+}
+
+.testimonial-content footer {
+    font-weight: bold;
+    color: white;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.stars {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.stars-img {
+    height: 80px;
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Alternating layout */
+.testimonial-item.right-video {
+    flex-direction: row-reverse;
+}
+
+/* Responsive adjustments for testimonials */
+@media (max-width: 992px) {
+    .testimonial-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 1.5rem;
+    }
+
+    .testimonial-item.right-video {
+        flex-direction: column;
+        /* Reset for mobile */
+    }
+
+    .testimonial-video-wrapper {
+        width: 100%;
+        height: 300px;
+    }
+
+    .testimonial-content {
+        align-items: center;
+    }
+
+    .testimonial-content footer {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonials-container {
+        gap: 4rem;
+    }
+
+    .testimonial-item {
+        padding: 1rem;
+    }
+
+    .testimonial-video-wrapper {
+        height: 250px;
+    }
+
+    .testimonial-content p {
+        font-size: 1.1rem;
+    }
+
+    .stars-img {
+        height: 60px;
+    }
+}
+
+
+/* --- AÑADIR ESTILOS PARA PRODUCTOS, FILOSOFÍA, CONTACTO Y FOOTER --- */
+
+/* --- 7. PRODUCTOS DESTACADOS --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--color-background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.product-card p {
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    color: #666;
+}
+
+.cta-button-secondary {
+    display: inline-block;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* --- 8. FILOSOFÍA --- */
+
+.philosophy-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.philosophy-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    max-width: 300px;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- 9. CONTACTO --- */
+.contact-section {
+    text-align: center;
+    background-color: #f4f4f4;
+    background-image: url('../../rsc/img/stardust.png');
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+.contact-subtitle {
+    max-width: 600px;
+    margin: 0 auto 1rem auto;
+}
+
+.contact-notice {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: var(--color-secondary);
+    font-weight: bold;
+    font-size: 1.1rem;
+    background-color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--color-primary);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(86, 171, 207, 0.7),
+            0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px 10px rgba(86, 171, 207, 0.8),
+            0 0 60px 15px rgba(86, 171, 207, 0.4),
+            0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(86, 171, 207, 0.7),
+            0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: #444243;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(68, 66, 67, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 15px 35px rgba(68, 66, 67, 0.5);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.contact-form input::placeholder,
+.contact-form select option:first-child,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-form select {
+    color: white;
+}
+
+.contact-form select option {
+    background-color: #444243;
+    color: white;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(86, 171, 207, 0.2);
+}
+
+.extras-section {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.extras-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.extra-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.extra-item input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+.extra-item span {
+    font-size: 0.95rem;
+}
+
+.total-display {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.3rem;
+    box-shadow: 0 5px 15px rgba(86, 171, 207, 0.3);
+}
+
+.total-display #total-amount {
+    font-size: 1.8rem;
+    font-family: var(--font-display);
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.total-display #total-amount .currency-small {
+    font-size: 1rem;
+    font-family: var(--font-display);
+    letter-spacing: normal;
+}
+
+.contact-form button {
+    align-self: center;
+    width: auto;
+    cursor: pointer;
+}
+
+/* --- 10. FOOTER --- */
+.main-footer-bottom {
+    background-color: var(--color-secondary);
+    color: #aaa;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-primary);
+}
+
+
+/* --- 10a. MODAL DE PRODUCTO --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 2rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 900px;
+    height: 90vh;
+    max-height: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    display: flex;
+    overflow: hidden;
+    /* Para que la imagen no se salga de los bordes redondeados */
+}
+
+body.modal-open,
+body.success-modal-open {
+    overflow: hidden;
+}
+
+/* Mostrar solo el modal de producto cuando está activo */
+body.modal-open #product-modal {
+    display: flex;
+    opacity: 1;
+}
+
+/* Mostrar solo el modal de éxito cuando está activo */
+body.success-modal-open #success-modal {
+    display: flex;
+    opacity: 1;
+}
+
+body.modal-open .modal-content,
+body.success-modal-open .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+    /* Por encima del contenido derecho */
+}
+
+.modal-close:hover {
+    color: var(--color-secondary);
+}
+
+.modal-left {
+    flex-basis: 50%;
+}
+
+.modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-right {
+    flex-basis: 50%;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Para scroll si el contenido es largo */
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.modal-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.modal-right h4 {
+    font-family: var(--font-primary);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.modal-includes {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0.5rem;
+    flex-grow: 0;
+    width: 100%;
+    max-width: 350px;
+}
+
+.modal-includes li {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.modal-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.modal-price {
+    font-size: 2rem;
+    font-family: var(--font-body);
+    font-style: normal;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.modal-price .currency {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.modal-cta {
+    display: inline-block;
+}
+
+/* --- 10b. MODAL DE ÉXITO --- */
+.success-modal-content {
+    max-width: 500px;
+    height: auto;
+    max-height: none;
+    display: block;
+    padding: 3rem;
+}
+
+.success-modal-body {
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin: 0 auto 1.5rem auto;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-modal-body h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.success-modal-body p {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Canvas de confeti */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1999;
+    display: none;
+}
+
+#confetti-canvas.active {
+    display: block;
+}
+
+
+/* --- 11. MEDIA QUERIES PARA RESPONSIVE DESIGN --- */
+
+/* Tablets grandes y laptops pequeñas */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .philosophy-features {
+        gap: 2rem;
+    }
+
+    .feature {
+        max-width: 250px;
+    }
+}
+
+/* Tablets y dispositivos más pequeños */
+@media (max-width: 768px) {
+    .main-header {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        height: var(--header-height);
+        border: none;
+        border-bottom: 1px solid #eee;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    :root {
+        --header-height: 70px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .main-nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        gap: 0;
+    }
+
+    /* Ocultar secciones de desktop */
+    .nav-section {
+        display: none;
+    }
+
+    /* Mostrar elementos de móvil */
+    .logo-mobile,
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .logo-mobile img {
+        height: 50px;
+    }
+
+    /* Estilos para la lista de enlaces cuando se abre el menú */
+    .nav-links {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-background);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        font-size: 1.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 999;
+    }
+
+    .nav-links li {
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--color-secondary);
+        font-weight: bold;
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: var(--color-primary);
+    }
+
+    .nav-open .nav-links {
+        transform: translateX(0);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    section {
+        padding: 4rem 1rem;
+    }
+
+    .philosophy-features {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .extras-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    /* Responsive para el grid de productos */
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Responsive para modales */
+    .modal-overlay {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        flex-direction: column;
+        max-height: 90vh;
+        height: auto;
+    }
+
+    .modal-left,
+    .modal-right {
+        flex-basis: 100%;
+    }
+
+    .modal-left {
+        max-height: 300px;
+    }
+
+    .modal-right {
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 2.2rem;
+    }
+
+    .modal-price {
+        font-size: 1.8rem;
+    }
+
+    .modal-includes {
+        max-width: 100%;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    .cta-button.whatsapp-button span {
+        display: none;
+        /* Ocultar texto en móvil */
+    }
+
+    .cta-button.whatsapp-button::before {
+        content: '💬';
+        /* Usar un ícono o similar */
+        font-size: 1.5rem;
+    }
+
+    .cta-button.whatsapp-button {
+        padding: 0.5rem 1rem;
+    }
+
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        /* Una columna en móviles */
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+    }
+
+    .modal-description {
+        font-size: 0.9rem;
+    }
+
+    .modal-price {
+        font-size: 1.5rem;
+    }
+
+    .modal-right {
+        padding: 1rem;
+    }
+
+    .total-display {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .total-display #total-amount {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        font-size: 1.2rem;
+        gap: 2rem;
+    }
+}
