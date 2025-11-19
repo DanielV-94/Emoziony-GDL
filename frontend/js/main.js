@@ -438,8 +438,8 @@ Enviado desde www.emozioni.com`;
             }
         });
 
-        // Auto-cerrar después de 5 segundos
-        setTimeout(closeSuccessModal, 5000);
+        // NOTA: Modal ya no se cierra automáticamente
+        // El usuario debe cerrar manualmente haciendo clic en la X
     }
 
     function closeSuccessModal() {
@@ -461,19 +461,19 @@ Enviado desde www.emozioni.com`;
         confettiCanvas.width = window.innerWidth;
         confettiCanvas.height = window.innerHeight;
 
-        // Crear partículas de confeti (más cantidad y más grandes)
-        const particleCount = 300;
+        // Crear partículas de confeti (MUY visible, caída casi directa)
+        const particleCount = 500;
         const colors = ['#56ABCF', '#444243', '#FFD700', '#FF69B4', '#00FF00', '#FF6347'];
 
         for (let i = 0; i < particleCount; i++) {
             confettiParticles.push({
                 x: Math.random() * confettiCanvas.width,
                 y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-                r: Math.random() * 10 + 4,
+                r: Math.random() * 15 + 8, // Partículas más grandes (8-23px)
                 d: Math.random() * particleCount,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                tilt: Math.random() * 10 - 10,
-                tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+                tilt: Math.random() * 6 - 3, // Menos balanceo para caída más directa
+                tiltAngleIncremental: Math.random() * 0.03 + 0.02, // Movimiento más suave
                 tiltAngle: 0
             });
         }
@@ -489,10 +489,10 @@ Enviado desde www.emozioni.com`;
                 ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
                 ctx.stroke();
 
-                // Actualizar posición
+                // Actualizar posición (caída más directa y rápida)
                 p.tiltAngle += p.tiltAngleIncremental;
-                p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
-                p.tilt = Math.sin(p.tiltAngle - index / 3) * 15;
+                p.y += (Math.cos(p.d) + 6 + p.r / 2); // Caída más rápida y directa
+                p.tilt = Math.sin(p.tiltAngle - index / 3) * 8; // Menos balanceo horizontal
 
                 // Si la partícula sale de la pantalla, eliminarla
                 if (p.y > confettiCanvas.height) {
