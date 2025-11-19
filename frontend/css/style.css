@@ -30,77 +30,6 @@
     --header-height: 80px;
 }
 
-/* --- 2. HERO REVEAL ANIMATION (Introducción) --- */
-.hero-reveal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 10000;
-}
-
-.hero-reveal__curtain {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.hero-reveal__curtain-top,
-.hero-reveal__curtain-bottom {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.hero-reveal__curtain-top {
-    top: 0;
-}
-
-.hero-reveal__curtain-bottom {
-    bottom: 0;
-}
-
-.hero-reveal__logo {
-    width: 300px;
-    height: auto;
-    max-width: 80vw;
-    filter: brightness(0) invert(1);
-    will-change: transform;
-}
-
-/* Posicionamiento del logo para que parezca uno solo */
-.hero-reveal__curtain-top .hero-reveal__logo {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -100%);
-}
-
-.hero-reveal__curtain-bottom .hero-reveal__logo {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translate(-50%, 100%);
-}
-
-/* Header y contenido principal siempre debajo */
-.main-header,
-.hero-section {
-    position: relative;
-    z-index: 1;
-}
-
 /* --- 2. RESET Y ESTILOS GLOBALES --- */
 *,
 *::before,
@@ -820,6 +749,109 @@ section {
     color: #f4f4f4;
     padding: 2rem 1rem;
     font-family: var(--font-body);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        inset 0 10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 -10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Overlay oscuro para profundidad adicional */
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(139, 137, 137, 0.7) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Fondo animado de logos en el footer */
+.footer-logo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.8;
+    filter: brightness(0.9) contrast(1);
+    box-shadow: inset 0 0 80px rgba(62, 62, 62, 0.54);
+}
+
+.footer-logo-marquee {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transform: rotate(-5deg);
+    width: 120%;
+    margin-left: -10%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-5deg);
+}
+
+.footer-logo-track {
+    display: flex;
+    animation: marqueeFooter 40s linear infinite;
+    white-space: nowrap;
+    padding: .5rem 0;
+}
+
+.footer-logo-track:nth-child(1) {
+    animation-duration: 35s;
+    opacity: 0.8;
+}
+
+.footer-logo-track:nth-child(2) {
+    animation-duration: 45s;
+    animation-direction: reverse;
+    opacity: 0.9;
+}
+
+.footer-logo-track:nth-child(3) {
+    animation-duration: 28s;
+    opacity: 0.85;
+}
+
+.footer-logo-track:nth-child(4) {
+    animation-duration: 40s;
+    animation-direction: reverse;
+    opacity: 0.95;
+}
+
+.footer-logo-track:nth-child(5) {
+    animation-duration: 37s;
+    opacity: 0.8;
+}
+
+.footer-logo-track:nth-child(6) {
+    animation-duration: 20s;
+    animation-direction: reverse;
+    opacity: 0.9;
+}
+
+.footer-marquee-logo {
+    height: 74px;
+    width: auto;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 15px rgba(224, 223, 223, 0.5));
+}
+
+@keyframes marqueeFooter {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .footer-content {
@@ -828,38 +860,23 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Redes sociales arriba centro */
-.footer-social-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
     position: relative;
-    z-index: 2;
+    z-index: 10;
+}
+
+/* Efecto vignette adicional en los bordes */
+.main-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-}
-
-.footer-social-top a {
-    color: #fff;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-social-top a:hover {
-    color: var(--color-primary);
-    transform: translateY(-3px);
-    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
-}
-
-.footer-social-top svg {
-    width: 32px;
-    height: 32px;
+    height: 100%;
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, transparent 15%, transparent 85%, rgba(0, 0, 0, 0.3) 100%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Divisores */
@@ -877,7 +894,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr;
     gap: 3rem;
-    align-items: center;
+    align-items: start;
     position: relative;
     z-index: 2;
     justify-items: center;
@@ -892,20 +909,55 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
 }
 
-/* Navegación y Contacto con sombra flotante */
+/* Navegación y Contacto con efecto glassmorphism */
 .footer-nav,
-.footer-contact {
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-    transition: filter 0.3s ease;
+.footer-contact,
+.footer-social-column {
+    background: rgba(153, 150, 152, 0.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.5rem 1rem;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: all 0.3s ease;
+    position: relative;
+    transform: translateZ(0);
+}
+
+/* Efecto de elevación sutil */
+.footer-nav::before,
+.footer-contact::before,
+.footer-social-column::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 .footer-nav:hover,
-.footer-contact:hover {
-    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+.footer-contact:hover,
+.footer-social-column:hover {
+    background: rgba(68, 66, 67, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.6),
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transform: translateY(-8px) scale(1.02);
 }
 
 .footer-column h4 {
@@ -914,6 +966,8 @@ section {
     color: white;
     font-weight: 500;
     text-transform: none;
+    margin-bottom: 1.5rem;
+    min-height: 2rem;
 }
 
 .footer-column ul {
@@ -922,11 +976,11 @@ section {
 }
 
 .footer-column li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-column a {
-    color: #b8b8b8;
+    color: #e9e7e7ff;
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 1rem;
@@ -950,23 +1004,46 @@ section {
     align-items: center;
 }
 
-/* Logo central */
-.footer-logo-column {
+/* Columna de redes sociales central */
+.footer-social-column {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
 }
 
-.footer-logo {
-    width: 600px;
-    height: auto;
-    position: relative;
-    z-index: 1;
-    display: block;
-    margin: 0 auto;
+.footer-social-column h4 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    min-height: 2rem;
+}
+
+.footer-social-center {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-social-center a {
+    color: white;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social-center a:hover {
+    color: var(--color-primary);
+    transform: translateY(-5px);
+}
+
+.footer-social-center svg {
+    width: 40px;
+    height: 40px;
 }
 
 /* Footer bottom: Copyright y Legal en la misma línea */
@@ -974,7 +1051,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #888;
+    color: #edececff;
     font-size: 0.9rem;
     padding-top: 1rem;
     position: relative;
@@ -994,7 +1071,7 @@ section {
 }
 
 .footer-legal-links a {
-    color: #888;
+    color: #ffffffff;
     text-decoration: none;
     transition: color 0.3s ease;
     font-size: 0.9rem;
@@ -1518,13 +1595,31 @@ body.success-modal-open .modal-content {
         gap: 3rem;
     }
 
+    .footer-marquee-logo {
+        height: 55px;
+    }
+
+    .footer-logo-track {
+        gap: 2rem;
+        padding: 0.75rem 0;
+    }
+
+    .footer-logo-marquee {
+        gap: 0;
+    }
+
     .footer-column h4 {
         font-size: 1.8rem;
     }
 
-    .footer-logo {
-        width: 400px;
+    .footer-social-center {
+        gap: 1.5rem;
         margin: 2rem 0;
+    }
+
+    .footer-social-center svg {
+        width: 35px;
+        height: 35px;
     }
 
     .footer-bottom {
@@ -1536,10 +1631,6 @@ body.success-modal-open .modal-content {
     .footer-legal-links {
         flex-direction: column;
         gap: 1rem;
-    }
-
-    .footer-social-top {
-        gap: 1.5rem;
     }
 
     .legal-page {
@@ -1621,11 +1712,6 @@ body.success-modal-open .modal-content {
         max-width: 100%;
     }
 
-    /* Hero Reveal Responsive */
-    .hero-reveal__logo {
-        width: 220px;
-    }
-
     .success-modal-content {
         padding: 2rem 1.5rem;
         max-width: 95%;
@@ -1642,6 +1728,19 @@ body.success-modal-open .modal-content {
 
 /* Móviles */
 @media (max-width: 480px) {
+    .footer-marquee-logo {
+        height: 45px;
+    }
+
+    .footer-logo-track {
+        gap: 1.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .footer-logo-marquee {
+        gap: 0;
+    }
+
     .cta-button.whatsapp-button span {
         display: none;
         /* Ocultar texto en móvil */
@@ -1655,11 +1754,6 @@ body.success-modal-open .modal-content {
 
     .cta-button.whatsapp-button {
         padding: 0.5rem 1rem;
-    }
-
-    /* Hero Reveal Mobile */
-    .hero-reveal__logo {
-        width: 180px;
     }
 
     .hero-title {

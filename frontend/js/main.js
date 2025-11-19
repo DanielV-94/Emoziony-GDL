@@ -524,7 +524,7 @@ Enviado desde www.emozioni.com`;
     if (heroReveal) {
         const curtainTop = heroReveal.querySelector('.hero-reveal__curtain-top');
         const curtainBottom = heroReveal.querySelector('.hero-reveal__curtain-bottom');
-        const logos = heroReveal.querySelectorAll('.hero-reveal__logo');
+        const texts = heroReveal.querySelectorAll('.hero-reveal__text');
 
         // Timeline principal con ScrollTrigger
         const tl = gsap.timeline({
@@ -539,8 +539,8 @@ Enviado desde www.emozioni.com`;
             }
         });
 
-        // Fase 1: Crecimiento del logo (0% - 50%)
-        tl.to(logos, {
+        // Fase 1: Crecimiento del texto (0% - 50%)
+        tl.to(texts, {
             scale: 3.5,
             duration: 0.5,
             ease: 'power2.out'
