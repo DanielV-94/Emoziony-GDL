@@ -402,8 +402,10 @@ Enviado desde www.emozioni.com`;
             const phoneNumber = '5213313310327';
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-            // Abrir WhatsApp
-            window.open(whatsappURL, '_blank');
+            // FUNCIÓN DE WHATSAPP DESACTIVADA TEMPORALMENTE
+            // window.open(whatsappURL, '_blank');
+
+            console.log('Cotización generada (WhatsApp desactivado):', whatsappMessage);
 
             // Mostrar modal de éxito y confeti
             showSuccessModal();
@@ -459,15 +461,15 @@ Enviado desde www.emozioni.com`;
         confettiCanvas.width = window.innerWidth;
         confettiCanvas.height = window.innerHeight;
 
-        // Crear partículas de confeti
-        const particleCount = 150;
+        // Crear partículas de confeti (más cantidad y más grandes)
+        const particleCount = 300;
         const colors = ['#56ABCF', '#444243', '#FFD700', '#FF69B4', '#00FF00', '#FF6347'];
 
         for (let i = 0; i < particleCount; i++) {
             confettiParticles.push({
                 x: Math.random() * confettiCanvas.width,
                 y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-                r: Math.random() * 6 + 2,
+                r: Math.random() * 10 + 4,
                 d: Math.random() * particleCount,
                 color: colors[Math.floor(Math.random() * colors.length)],
                 tilt: Math.random() * 10 - 10,

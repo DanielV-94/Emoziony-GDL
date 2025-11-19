@@ -571,6 +571,7 @@ section {
     background-image: url('../../rsc/img/stardust.png');
     background-repeat: repeat;
     background-size: auto;
+    background-blend-mode: overlay;
 }
 
 .contact-subtitle {
@@ -714,7 +715,7 @@ section {
 }
 
 .total-display {
-    background-color: var(--color-primary);
+    background-color: rgba(44, 130, 167, 0.76);
     color: white;
     padding: 1.5rem;
     border-radius: 8px;
@@ -1442,7 +1443,7 @@ body.success-modal-open .modal-content {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1999;
+    z-index: 2001;
     display: none;
 }
 
