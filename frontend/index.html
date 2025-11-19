@@ -27,6 +27,16 @@
 
 <body>
 
+    <!-- Hero Reveal Section - Animación de Introducción (Cortina) -->
+    <div class="hero-reveal">
+        <div class="hero-reveal__curtain-top">
+            <img src="../rsc/logo/blanco.svg" alt="Emozioni Logo" class="hero-reveal__logo">
+        </div>
+        <div class="hero-reveal__curtain-bottom">
+            <img src="../rsc/logo/blanco.svg" alt="Emozioni Logo" class="hero-reveal__logo">
+        </div>
+    </div>
+
     <header class="main-header">
         <nav class="main-nav">
             <!-- Contenido para Desktop -->
@@ -374,7 +384,11 @@
             <div class="success-modal-body">
                 <div class="success-icon">✓</div>
                 <h3>¡Cotización enviada con éxito!</h3>
-                <p>Pronto te contactaremos para mandarte los datos del depósito de tu pedido.</p>
+                <p>Pronto te contactaremos para confirmar tu pedido.</p>
+                <div class="payment-info">
+                    <h4>Datos de Pago</h4>
+                    <img src="../rsc/img/datos_pago.png" alt="Datos de Pago" class="payment-image">
+                </div>
             </div>
         </div>
     </div>
@@ -459,6 +473,8 @@
     <script src="https://unpkg.com/split-type"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollSmoother.min.js"></script>
 
 
 

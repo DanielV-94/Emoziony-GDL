@@ -515,4 +515,47 @@ Enviado desde www.emozioni.com`;
         confettiCanvas.classList.remove('active');
         confettiParticles = [];
     }
+
+    // --- HERO REVEAL ANIMATION (Cortina de Introducción) ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    const heroReveal = document.querySelector('.hero-reveal');
+
+    if (heroReveal) {
+        const curtainTop = heroReveal.querySelector('.hero-reveal__curtain-top');
+        const curtainBottom = heroReveal.querySelector('.hero-reveal__curtain-bottom');
+        const logos = heroReveal.querySelectorAll('.hero-reveal__logo');
+
+        // Timeline principal con ScrollTrigger
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: '+=200%',
+                scrub: 1.5,
+                onComplete: () => {
+                    heroReveal.classList.add('completed');
+                }
+            }
+        });
+
+        // Fase 1: Crecimiento del logo (0% - 50%)
+        tl.to(logos, {
+            scale: 3.5,
+            duration: 0.5,
+            ease: 'power2.out'
+        });
+
+        // Fase 2: Separación de cortinas (50% - 100%)
+        tl.to(curtainTop, {
+            yPercent: -100,
+            duration: 0.5,
+            ease: 'power3.inOut'
+        }, '-=0.1')
+            .to(curtainBottom, {
+                yPercent: 100,
+                duration: 0.5,
+                ease: 'power3.inOut'
+            }, '<');
+    }
 });
