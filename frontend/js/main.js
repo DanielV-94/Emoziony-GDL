@@ -4,70 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log("Emozioni site loaded. Ready for magic!");
 
-    // --- GSAP HERO TITLE ANIMATION (with SplitType) ---
-    const animatedTitle = document.querySelector('[animate]');
-    if (animatedTitle && typeof SplitType !== 'undefined') {
-
-        // Dividir el texto en caracteres
-        let mySplitText = new SplitType(animatedTitle, {
-            types: 'chars',
-            tagName: 'span'
-        });
-
-        // Crear una línea de tiempo para controlar la secuencia de animación
-        const tl = gsap.timeline({
-            repeat: -1,         // Repetir infinitamente
-            repeatDelay: 1      // Esperar 1 segundos antes de cada repetición
-        });
-
-        // Seleccionar los sub-elementos
-        const subElements = gsap.utils.toArray('.animate-hero-element');
-
-        // Animación de ENTRADA del TÍTULO
-        tl.from(mySplitText.chars, {
-            y: '110%',
-            opacity: 0,
-            rotationZ: '10',
-            duration: 1.4,
-            ease: 'bounce.out',
-            stagger: 0.05,
-        });
-
-        // Animación de ENTRADA para subtítulo y botón (después de la del título)
-        if (subElements.length > 0) {
-            tl.from(subElements, {
-                opacity: 0,
-                y: 50,
-                duration: 1.4,
-                ease: 'bounce.out',
-                stagger: 0.2,
-            }, "-=1"); // Inicia 1s antes de que termine la animación de los caracteres
-        }
-
-        // Animación de SALIDA para subtítulo y botón
-        if (subElements.length > 0) {
-            tl.to(subElements, {
-                opacity: 0,
-                y: -50,
-                duration: 1,
-                ease: 'power2.in',
-                stagger: 0.2,
-            }, "+=1.5"); // Espera 1.5s después de la entrada
-        }
-
-        // Animación de SALIDA del TÍTULO
-        tl.to(mySplitText.chars, {
-            opacity: 0,
-            y: '-110%',
-            rotationZ: '-10',
-            duration: 1,
-            ease: 'power2.in',
-            stagger: 0.05,
-        }, ">"); // Inicia justo después de la animación anterior
-    }
-
-
-
     // --- GSAP TESTIMONIALS ANIMATION (Simple Fade-in Effect) ---
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -516,48 +452,5 @@ Enviado desde www.emozioni.com`;
         }
         confettiCanvas.classList.remove('active');
         confettiParticles = [];
-    }
-
-    // --- HERO REVEAL ANIMATION (Cortina de Introducción) ---
-    gsap.registerPlugin(ScrollTrigger);
-
-    const heroReveal = document.querySelector('.hero-reveal');
-
-    if (heroReveal) {
-        const curtainTop = heroReveal.querySelector('.hero-reveal__curtain-top');
-        const curtainBottom = heroReveal.querySelector('.hero-reveal__curtain-bottom');
-        const texts = heroReveal.querySelectorAll('.hero-reveal__text');
-
-        // Timeline principal con ScrollTrigger
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top top',
-                end: '+=200%',
-                scrub: 1.5,
-                onComplete: () => {
-                    heroReveal.classList.add('completed');
-                }
-            }
-        });
-
-        // Fase 1: Crecimiento del texto (0% - 50%)
-        tl.to(texts, {
-            scale: 3.5,
-            duration: 0.5,
-            ease: 'power2.out'
-        });
-
-        // Fase 2: Separación de cortinas (50% - 100%)
-        tl.to(curtainTop, {
-            yPercent: -100,
-            duration: 0.5,
-            ease: 'power3.inOut'
-        }, '-=0.1')
-            .to(curtainBottom, {
-                yPercent: 100,
-                duration: 0.5,
-                ease: 'power3.inOut'
-            }, '<');
     }
 });
