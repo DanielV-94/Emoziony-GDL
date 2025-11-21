@@ -2,101 +2,131 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    console.log("Emozioni site loaded. Ready for magic!");
+    // --- HERO TITLE ANIMATION (INFINITE LOOP) ---
+    if (typeof gsap !== 'undefined' && typeof SplitType !== 'undefined') {
+        const heroTitle = document.querySelector('.hero-title');
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const heroButton = document.querySelector('.hero-content .cta-button');
 
-    // --- GSAP TESTIMONIALS ANIMATION (Simple Fade-in Effect) ---
+        if (heroTitle) {
+            const split = new SplitType(heroTitle, { types: 'chars' });
+            const chars = split.chars;
+
+            gsap.fromTo(chars, {
+                opacity: 0,
+                y: 100,
+                rotationX: -90
+            }, {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 1,
+                ease: "back.out(1.7)",
+                stagger: 0.03,
+                delay: 0.5,
+                repeat: -1,
+                repeatDelay: 3,
+                yoyo: true
+            });
+        }
+
+        if (heroSubtitle) {
+            gsap.fromTo(heroSubtitle, {
+                opacity: 0,
+                y: 30
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power2.out",
+                delay: 1.5,
+                repeat: -1,
+                repeatDelay: 3.5,
+                yoyo: true
+            });
+        }
+
+        if (heroButton) {
+            gsap.fromTo(heroButton, {
+                opacity: 0,
+                scale: 0.8
+            }, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.7)",
+                delay: 2,
+                repeat: -1,
+                repeatDelay: 3.7,
+                yoyo: true
+            });
+        }
+    }
+
+    // --- LAZY LOAD VIDEOS ---
+    const lazyLoadVideo = (video) => {
+        const source = video.querySelector('source[data-src]');
+        if (source) {
+            source.src = source.dataset.src;
+            source.removeAttribute('data-src');
+            video.load();
+        }
+    };
+
+    // --- TESTIMONIALS SCROLL ANIMATION ---
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
         const testimonials = gsap.utils.toArray('.testimonial-item');
-        const testimonialsSection = document.querySelector('.testimonials-section');
 
-        if (testimonialsSection && testimonials.length > 0) {
-            console.log(`Found ${testimonials.length} testimonials`);
-
-            // Set initial state - make first testimonial visible, others hidden
+        if (testimonials.length > 0) {
             testimonials.forEach((testimonial, i) => {
                 const video = testimonial.querySelector('.testimonial-video');
 
                 if (i === 0) {
-                    // First testimonial visible
                     testimonial.classList.remove('testimonial-hidden');
-                    testimonial.classList.add('testimonial-visible');
-                    gsap.set(testimonial, {
-                        zIndex: testimonials.length,
-                        opacity: 1,
-                        y: 0
-                    });
+                    gsap.set(testimonial, { opacity: 1, y: 0 });
                     if (video) {
-                        video.play().catch(err => console.log('Video autoplay blocked:', err));
+                        lazyLoadVideo(video);
+                        video.play().catch(() => { });
                     }
                 } else {
-                    // Others hidden initially
-                    testimonial.classList.add('testimonial-hidden');
-                    gsap.set(testimonial, {
-                        zIndex: testimonials.length - i,
-                        opacity: 0,
-                        y: 50
-                    });
-                }
+                    gsap.set(testimonial, { opacity: 0, y: 50 });
 
-                // Create individual ScrollTrigger for each testimonial
-                if (i > 0) {
                     ScrollTrigger.create({
                         trigger: testimonial,
                         start: "top 80%",
-                        end: "bottom 20%",
                         onEnter: () => {
-                            console.log(`Testimonial ${i + 1} entering`);
-                            gsap.to(testimonial, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 0.8,
-                                ease: "power2.out",
-                                onStart: () => {
-                                    testimonial.classList.remove('testimonial-hidden');
-                                    testimonial.classList.add('testimonial-visible');
-                                    gsap.set(testimonial, { zIndex: testimonials.length });
-                                    if (video) {
-                                        video.play().catch(err => console.log('Video play error:', err));
-                                    }
-                                }
-                            });
-                        },
-                        onLeave: () => {
-                            if (video) video.pause();
-                        },
-                        onEnterBack: () => {
                             gsap.to(testimonial, {
                                 opacity: 1,
                                 y: 0,
                                 duration: 0.8,
                                 ease: "power2.out"
                             });
+                            testimonial.classList.remove('testimonial-hidden');
                             if (video) {
-                                video.play().catch(err => console.log('Video play error:', err));
+                                lazyLoadVideo(video);
+                                video.play().catch(() => { });
                             }
                         },
+                        onLeave: () => {
+                            if (video) video.pause();
+                        },
+                        onEnterBack: () => {
+                            gsap.to(testimonial, { opacity: 1, y: 0, duration: 0.8 });
+                            if (video) video.play().catch(() => { });
+                        },
                         onLeaveBack: () => {
-                            gsap.to(testimonial, {
-                                opacity: 0,
-                                y: 50,
-                                duration: 0.5,
-                                ease: "power2.in"
-                            });
+                            gsap.to(testimonial, { opacity: 0, y: 50, duration: 0.5 });
                             if (video) video.pause();
                         }
                     });
                 }
             });
-        } else {
-            console.error("Testimonials section or items not found!");
         }
-
-    } else {
-        console.error("GSAP or ScrollTrigger is not loaded!");
     }
 
+    // --- MOBILE NAVIGATION ---
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -106,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Cerrar menú al hacer clic en un enlace
     if (navLinks) {
         navLinks.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
@@ -115,8 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- MODAL DE DETALLES DE PRODUCTO ---
+    // --- PRODUCT MODAL ---
     const modalOverlay = document.getElementById('product-modal');
+
     if (modalOverlay) {
         const modalCloseBtn = modalOverlay.querySelector('.modal-close');
         const modalImg = modalOverlay.querySelector('.modal-img');
@@ -127,17 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const detailTriggers = document.querySelectorAll('.product-details-trigger');
 
         const openModal = (imgSrc, title, description, includes, price) => {
-            // Poblar datos básicos
             modalImg.src = imgSrc;
             modalTitle.textContent = title;
             modalDescription.textContent = description;
 
-            // Formatear precio con MXN más pequeño
             if (price) {
                 const priceMatch = price.match(/\$?([\d,]+)\s*(MXN)?/i);
                 if (priceMatch) {
-                    const amount = priceMatch[1];
-                    modalPrice.innerHTML = `$${amount} <span class="currency">MXN</span>`;
+                    modalPrice.innerHTML = `$${priceMatch[1]} <span class="currency">MXN</span>`;
                 } else {
                     modalPrice.textContent = price;
                 }
@@ -145,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 modalPrice.textContent = '';
             }
 
-            // Limpiar y poblar la lista de "incluye"
             modalIncludesList.innerHTML = '';
             if (includes && includes.length > 0) {
                 includes.forEach(item => {
@@ -155,11 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
 
-            // Mostrar el modal del producto
             modalOverlay.style.display = 'flex';
-            setTimeout(() => {
-                modalOverlay.style.opacity = '1';
-            }, 10);
+            setTimeout(() => modalOverlay.style.opacity = '1', 10);
             document.body.classList.add('modal-open');
         };
 
@@ -175,8 +198,6 @@ document.addEventListener('DOMContentLoaded', function () {
             trigger.addEventListener('click', (e) => {
                 e.preventDefault();
                 const card = trigger.closest('.product-card');
-
-                // Extraer datos de la tarjeta
                 const imgSrc = card.querySelector('img').src;
                 const title = card.querySelector('h3').textContent;
                 const description = card.querySelector('p').textContent;
@@ -189,38 +210,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         modalCloseBtn.addEventListener('click', closeModal);
-
         modalOverlay.addEventListener('click', (e) => {
-            // Si se hace clic en el fondo oscuro y no en el contenido
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
+            if (e.target === modalOverlay) closeModal();
         });
 
-        // Cerrar con la tecla Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
                 closeModal();
             }
         });
 
-        // Cerrar modal al hacer clic en "¡Lo Quiero!" y llevar al formulario
         const modalCtaBtn = modalOverlay.querySelector('.modal-cta');
         if (modalCtaBtn) {
-            modalCtaBtn.addEventListener('click', (e) => {
-                closeModal();
-                // El href="#contacto" se encargará de llevar al formulario
-            });
+            modalCtaBtn.addEventListener('click', closeModal);
         }
     }
 
-    // --- FORMULARIO DE CONTACTO ---
+    // --- CONTACT FORM ---
     const contactForm = document.getElementById('contact-form');
     const totalAmountEl = document.getElementById('total-amount');
     const successModal = document.getElementById('success-modal');
-    const confettiCanvas = document.getElementById('confetti-canvas');
 
-    // Precios de los productos
     const productPrices = {
         'Desayuno Premium': 1278,
         'Brunch Especial': 1704,
@@ -233,32 +243,24 @@ document.addEventListener('DOMContentLoaded', function () {
         'Celebración Especial': 2024
     };
 
-    // Función para calcular el total
     function calculateTotal() {
         let total = 0;
-
-        // Obtener precio del producto seleccionado
         const productSelect = contactForm.querySelector('[name="product_interest"]');
+
         if (productSelect.value) {
             total += productPrices[productSelect.value] || 0;
         }
 
-        // Sumar extras seleccionados
         const extraCheckboxes = contactForm.querySelectorAll('[name="extra"]:checked');
         extraCheckboxes.forEach(checkbox => {
-            // Extraer el precio del valor (ej: "Carta Personalizada - $150")
             const match = checkbox.value.match(/\$(\d+)/);
-            if (match) {
-                total += parseInt(match[1]);
-            }
+            if (match) total += parseInt(match[1]);
         });
 
-        // Actualizar display del total
         totalAmountEl.innerHTML = `$${total.toLocaleString('es-MX')} <span class="currency-small">MXN</span>`;
         return total;
     }
 
-    // Actualizar total cuando cambie el producto o los extras
     if (contactForm) {
         const productSelect = contactForm.querySelector('[name="product_interest"]');
         const extraCheckboxes = contactForm.querySelectorAll('[name="extra"]');
@@ -268,34 +270,18 @@ document.addEventListener('DOMContentLoaded', function () {
             checkbox.addEventListener('change', calculateTotal);
         });
 
-        // Manejar envío del formulario
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Recopilar datos del formulario
             const formData = new FormData(contactForm);
-            const recipientName = formData.get('recipient_name');
-            const deliveryAddress = formData.get('delivery_address');
-            const deliveryDate = formData.get('delivery_date');
-            const deliveryTime = formData.get('delivery_time');
-            const product = formData.get('product_interest');
-            const recipientPhone = formData.get('recipient_phone');
-            const email = formData.get('email');
-            const occasion = formData.get('occasion');
-            const message = formData.get('message') || 'Sin mensaje adicional';
-
-            // Recopilar extras seleccionados
             const selectedExtras = [];
-            const extraCheckboxes = contactForm.querySelectorAll('[name="extra"]:checked');
-            extraCheckboxes.forEach(checkbox => {
+
+            contactForm.querySelectorAll('[name="extra"]:checked').forEach(checkbox => {
                 selectedExtras.push(checkbox.value);
             });
 
-            const extrasText = selectedExtras.length > 0 ? selectedExtras.join('\n• ') : 'Ninguno';
             const total = calculateTotal();
-
-            // Formatear fecha
-            const dateObj = new Date(deliveryDate);
+            const dateObj = new Date(formData.get('delivery_date'));
             const formattedDate = dateObj.toLocaleDateString('es-MX', {
                 weekday: 'long',
                 year: 'numeric',
@@ -303,30 +289,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 day: 'numeric'
             });
 
-            // Crear mensaje para WhatsApp
             const whatsappMessage = `🎁 *NUEVA COTIZACIÓN - EMOZIONI* 🎁
 
 📦 *DETALLES DEL PEDIDO:*
-👤 Destinatario: ${recipientName}
-📍 Dirección: ${deliveryAddress}
+👤 Destinatario: ${formData.get('recipient_name')}
+📍 Dirección: ${formData.get('delivery_address')}
 📅 Fecha de entrega: ${formattedDate}
-⏰ Hora de entrega: ${deliveryTime}
+⏰ Hora de entrega: ${formData.get('delivery_time')}
 
 🛍️ *PRODUCTO:*
-${product}
+${formData.get('product_interest')}
 
 ✨ *EXTRAS:*
-• ${extrasText}
+• ${selectedExtras.length > 0 ? selectedExtras.join('\n• ') : 'Ninguno'}
 
 📞 *CONTACTO:*
-Teléfono destinatario: ${recipientPhone}
-Email: ${email}
+Teléfono destinatario: ${formData.get('recipient_phone')}
+Email: ${formData.get('email')}
 
 🎉 *MOTIVO:*
-${occasion}
+${formData.get('occasion')}
 
 💬 *MENSAJE ESPECIAL:*
-${message}
+${formData.get('message') || 'Sin mensaje adicional'}
 
 💰 *TOTAL A DEPOSITAR:*
 $${total.toLocaleString('es-MX')} MXN
@@ -334,48 +319,29 @@ $${total.toLocaleString('es-MX')} MXN
 ---
 Enviado desde www.emozioni.com`;
 
-            // Número de WhatsApp del negocio
             const phoneNumber = '5213313310327';
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-            // FUNCIÓN DE WHATSAPP DESACTIVADA TEMPORALMENTE
             // window.open(whatsappURL, '_blank');
 
-            console.log('Cotización generada (WhatsApp desactivado):', whatsappMessage);
-
-            // Mostrar modal de éxito y confeti
             showSuccessModal();
-
-            // Limpiar formulario
             contactForm.reset();
             calculateTotal();
         });
     }
 
-    // Función para mostrar el modal de éxito con confeti
     function showSuccessModal() {
         document.body.classList.add('success-modal-open');
         successModal.style.display = 'flex';
-        setTimeout(() => {
-            successModal.style.opacity = '1';
-        }, 10);
+        setTimeout(() => successModal.style.opacity = '1', 10);
 
-        // Iniciar animación de confeti
         startConfetti();
 
-        // Cerrar modal al hacer clic en la X
         const successCloseBtn = successModal.querySelector('.modal-close');
         successCloseBtn.addEventListener('click', closeSuccessModal);
-
-        // Cerrar modal al hacer clic fuera
         successModal.addEventListener('click', (e) => {
-            if (e.target === successModal) {
-                closeSuccessModal();
-            }
+            if (e.target === successModal) closeSuccessModal();
         });
-
-        // NOTA: Modal ya no se cierra automáticamente
-        // El usuario debe cerrar manualmente haciendo clic en la X
     }
 
     function closeSuccessModal() {
@@ -387,7 +353,8 @@ Enviado desde www.emozioni.com`;
         }, 300);
     }
 
-    // --- ANIMACIÓN DE CONFETI ---
+    // --- CONFETTI ANIMATION ---
+    const confettiCanvas = document.getElementById('confetti-canvas');
     let confettiAnimationId;
     let confettiParticles = [];
 
@@ -397,7 +364,6 @@ Enviado desde www.emozioni.com`;
         confettiCanvas.width = window.innerWidth;
         confettiCanvas.height = window.innerHeight;
 
-        // Crear partículas de confeti (MUY visible, caída casi directa)
         const particleCount = 500;
         const colors = ['#56ABCF', '#444243', '#FFD700', '#FF69B4', '#00FF00', '#FF6347'];
 
@@ -405,11 +371,11 @@ Enviado desde www.emozioni.com`;
             confettiParticles.push({
                 x: Math.random() * confettiCanvas.width,
                 y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-                r: Math.random() * 15 + 8, // Partículas más grandes (8-23px)
+                r: Math.random() * 15 + 8,
                 d: Math.random() * particleCount,
                 color: colors[Math.floor(Math.random() * colors.length)],
-                tilt: Math.random() * 6 - 3, // Menos balanceo para caída más directa
-                tiltAngleIncremental: Math.random() * 0.03 + 0.02, // Movimiento más suave
+                tilt: Math.random() * 6 - 3,
+                tiltAngleIncremental: Math.random() * 0.03 + 0.02,
                 tiltAngle: 0
             });
         }
@@ -425,12 +391,10 @@ Enviado desde www.emozioni.com`;
                 ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
                 ctx.stroke();
 
-                // Actualizar posición (caída más directa y rápida)
                 p.tiltAngle += p.tiltAngleIncremental;
-                p.y += (Math.cos(p.d) + 6 + p.r / 2); // Caída más rápida y directa
-                p.tilt = Math.sin(p.tiltAngle - index / 3) * 8; // Menos balanceo horizontal
+                p.y += (Math.cos(p.d) + 6 + p.r / 2);
+                p.tilt = Math.sin(p.tiltAngle - index / 3) * 8;
 
-                // Si la partícula sale de la pantalla, eliminarla
                 if (p.y > confettiCanvas.height) {
                     confettiParticles.splice(index, 1);
                 }
