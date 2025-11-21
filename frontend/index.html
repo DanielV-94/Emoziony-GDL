@@ -325,6 +325,7 @@
             <p class="contact-notice">
                 ⏰ Los envíos deben agendarse con un día de anticipación.
             </p>
+            <!-- INICIO FORMULARIO ANTERIOR (COMENTADO)
             <form class="contact-form" id="contact-form">
                 <input type="text" name="recipient_name" placeholder="Nombre del Destinatario *" required />
                 <input type="text" name="delivery_address" placeholder="Dirección de Entrega *" required />
@@ -415,6 +416,102 @@
                     Enviar Cotización por WhatsApp
                 </button>
             </form>
+            FIN FORMULARIO ANTERIOR (COMENTADO) -->
+
+            <!-- INICIO NUEVO FORMULARIO BENTO V2 -->
+            <form class="bento-form" id="contact-form">
+                <div class="bento-grid-v2">
+                    <div class="bento-box-v2 card-1">
+                        <input type="text" name="recipient_name" placeholder="Nombre del Destinatario *" required />
+                        <input type="text" name="delivery_address" placeholder="Dirección de Entrega *" required />
+                    </div>
+                    <div class="bento-box-v2 card-2">
+                        <input type="date" name="delivery_date" required title="Fecha de Entrega" />
+                        <input type="time" name="delivery_time" required title="Hora de Entrega" />
+                    </div>
+                    <div class="bento-box-v2 card-3">
+                         <select name="product_interest" required>
+                            <option value="" disabled selected>Elige un producto *</option>
+                            <option value="Desayuno Premium">Desayuno Premium - $1,278 MXN</option>
+                            <option value="Brunch Especial">Brunch Especial - $1,704 MXN</option>
+                            <option value="Tarde de Snacks">Tarde de Snacks - $959 MXN</option>
+                            <option value="Cena Romántica">Cena Romántica - $2,556 MXN</option>
+                            <option value="Box de Frutas">Box de Frutas - $746 MXN</option>
+                            <option value="Kit de Vino y Quesos">Kit de Vino y Quesos - $1,811 MXN</option>
+                            <option value="Mañana Infantil">Mañana Infantil - $1,172 MXN</option>
+                            <option value="Detalle Corporativo">Detalle Corporativo - $852 MXN</option>
+                            <option value="Celebración Especial">Celebración Especial - $2,024 MXN</option>
+                        </select>
+                    </div>
+                    <div class="bento-box-v2 card-4">
+                         <select name="occasion" required>
+                            <option value="" disabled selected>Motivo del envío *</option>
+                            <option value="Cumpleaños">Cumpleaños</option>
+                            <option value="Aniversario">Aniversario</option>
+                            <option value="Agradecimiento">Agradecimiento</option>
+                            <option value="Celebración">Celebración</option>
+                            <option value="Romántico">Romántico</option>
+                            <option value="Corporativo">Corporativo</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="bento-box-v2 card-5">
+                        <textarea name="message" placeholder="Mensaje o instrucciones especiales (Opcional)" rows="3"></textarea>
+                    </div>
+                    <div class="bento-box-v2 card-6">
+                        <h3 class="bento-title">Extras</h3>
+                        <div class="bento-extras-grid">
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Carta Personalizada - $150" />
+                                <span>Carta Personalizada</span>
+                                <span class="extra-price">$150</span>
+                            </label>
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Foto con Marco - $200" />
+                                <span>Foto con Marco</span>
+                                <span class="extra-price">$200</span>
+                            </label>
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Globos - $100" />
+                                <span>Globos</span>
+                                <span class="extra-price">$100</span>
+                            </label>
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Flores - $300" />
+                                <span>Flores</span>
+                                <span class="extra-price">$300</span>
+                            </label>
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Peluche - $250" />
+                                <span>Peluche</span>
+                                <span class="extra-price">$250</span>
+                            </label>
+                            <label class="extra-item-bento">
+                                <input type="checkbox" name="extra" value="Vela Aromática - $180" />
+                                <span>Vela Aromática</span>
+                                <span class="extra-price">$180</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="bento-box-v2 card-7">
+                        <input type="tel" name="recipient_phone" placeholder="Teléfono del Destinatario *" required />
+                        <input type="email" name="email" placeholder="Tu Correo Electrónico *" required />
+                        <div class="total-display">
+                            <strong>Total:</strong>
+                            <span id="total-amount">$0 MXN</span>
+                        </div>
+                    </div>
+                    <div class="bento-box-v2 card-8">
+                         <button type="submit" class="cta-button-form">
+                            Enviar Cotización
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                                <path d="M22 12L3 20L6.5625 12L3 4L22 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- FIN NUEVO FORMULARIO BENTO V2 -->
         </section>
     </main>
 
