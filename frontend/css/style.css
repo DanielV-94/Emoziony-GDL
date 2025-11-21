@@ -82,6 +82,7 @@ h6 {
     font-family: var(--font-display);
     color: var(--color-secondary);
     font-weight: normal;
+    letter-spacing: 0.06em;
 }
 
 .section-title {
@@ -169,9 +170,6 @@ h6 {
 .mobile-nav-toggle {
     display: none;
 }
-
-
-
 
 .cta-button {
     font-family: var(--font-primary);
@@ -288,7 +286,7 @@ h6 {
     font-family: var(--font-display);
     font-size: 5rem;
     color: white;
-    -webkit-text-stroke: 1.5px white;
+    -webkit-text-stroke: 1.5px rgb(35, 34, 34);
     /* Creamos el contorno blanco */
     margin-bottom: 1rem;
     overflow: hidden;
@@ -307,15 +305,46 @@ section {
 
 .featured-products-section,
 .philosophy-section,
-.testimonials-section {
+.testimonials-section,
+.contact-section {
     max-width: 100%;
     /* Ocupar todo el ancho */
     padding-left: calc((100% - 1200px) / 2);
     padding-right: calc((100% - 1200px) / 2);
-    background-color: #f4f4f4;
+    background-color: #fffdfdff;
     background-image: url('../../rsc/img/stardust.png');
     background-repeat: repeat;
     background-size: auto;
+}
+
+/* --- 8. FILOSOFÍA --- */
+
+.philosophy-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.philosophy-features {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    max-width: 300px;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .featured-products-section {
@@ -341,7 +370,8 @@ section {
 
 .product-stamp {
     position: absolute;
-    opacity: 0.8;
+    opacity: 0.7;
+    filter: blur(1px);
 }
 
 .product-stamp-1 {
@@ -358,6 +388,7 @@ section {
     top: 35%;
     right: -1%;
     transform: rotate(18deg);
+    fill-opacity: 0.8;
 }
 
 .product-stamp-4 {
@@ -387,7 +418,94 @@ section {
 .featured-products-section .section-title,
 .featured-products-section .product-grid {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+}
+
+/* --- 6. PRODUCTOS DESTACADOS --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--color-background);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 8px 30px rgba(86, 171, 207, 0.15),
+        0 0 0 1px rgba(86, 171, 207, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Glow neon sutil debajo de la card */
+.product-card::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 20px;
+    background: radial-gradient(ellipse at center,
+            rgba(86, 171, 207, 0.25) 0%,
+            rgba(86, 171, 207, 0.1) 40%,
+            transparent 70%);
+    filter: blur(12px);
+    opacity: 0.6;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.12),
+        0 12px 40px rgba(86, 171, 207, 0.3),
+        0 0 0 1px rgba(86, 171, 207, 0.1),
+        0 0 60px rgba(41, 213, 255, 0.15);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+    width: 90%;
+    height: 25px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.product-card p {
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    color: #666;
+}
+
+.cta-button-secondary {
+    display: inline-block;
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button-secondary:hover {
+    background-color: var(--color-primary);
+    color: white;
 }
 
 /* --- 6. TESTIMONIOS --- */
@@ -421,6 +539,7 @@ section {
     opacity: 0.9;
     width: 60vw;
     max-width: 700px;
+    filter: blur(1px);
 }
 
 .stamp-bg-1 {
@@ -459,19 +578,93 @@ section {
     align-items: center;
     gap: 2.5rem;
     padding: 1.5rem;
-    background: rgba(86, 171, 207, 0.25);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-        0 10px 25px rgba(86, 171, 207, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    background: linear-gradient(135deg,
+            rgba(180, 226, 236, 0.16) 0%,
+            rgba(86, 171, 207, 0.10) 50%,
+            rgba(86, 171, 207, 0.05) 100%);
+    backdrop-filter: blur(10px) saturate(100%);
+    -webkit-backdrop-filter: blur(10px) saturate(100%);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow:
+        0 8px 32px 0 rgba(88, 222, 222, 0.14),
+        0 20px 60px rgba(132, 183, 201, 0.18),
+        0 10px 25px rgba(132, 208, 218, 0.2),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.32);
     overflow: hidden;
     position: relative;
     width: 100%;
     min-height: 320px;
     z-index: 1;
+}
+
+/* Efecto de brillo líquido animado */
+.testimonial-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.19) 0%,
+            rgba(255, 255, 255, 0.06) 30%,
+            transparent 70%);
+    animation: liquidGlass 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Capa de reflejos */
+.testimonial-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.11) 50%,
+            transparent 100%);
+    animation: liquidShine 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes liquidGlass {
+
+    0%,
+    100% {
+        transform: translate(0%, 0%) scale(1);
+        opacity: 0.6;
+    }
+
+    25% {
+        transform: translate(10%, 10%) scale(1.1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-5%, 15%) scale(1.05);
+        opacity: 0.7;
+    }
+
+    75% {
+        transform: translate(-10%, -10%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes liquidShine {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
 }
 
 .testimonial-item.testimonial-hidden {
@@ -499,7 +692,7 @@ section {
     /* Altura fija para los videos */
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
 .testimonial-video {
@@ -523,13 +716,13 @@ section {
     font-size: 1.4rem;
     /* Ajuste para que sea más legible */
     line-height: 1.6;
-    color: white;
+    color: var(--color-secondary);
 }
 
 .testimonial-content footer {
     font-weight: 200;
     font-family: var(--font-display);
-    color: white;
+    color: var(--color-secondary);
     margin-top: 0.75rem;
     font-size: 1.4rem;
     text-align: right;
@@ -600,104 +793,11 @@ section {
 }
 
 
-/* --- AÑADIR ESTILOS PARA PRODUCTOS, FILOSOFÍA, CONTACTO Y FOOTER --- */
-
-/* --- 7. PRODUCTOS DESTACADOS --- */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.product-card {
-    background: var(--color-background);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-}
-
-.product-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.product-card h3 {
-    font-size: 1.5rem;
-    margin: 1.5rem 1.5rem 0.5rem 1.5rem;
-}
-
-.product-card p {
-    margin: 0 1.5rem 1.5rem 1.5rem;
-    color: #666;
-}
-
-.cta-button-secondary {
-    display: inline-block;
-    margin: 0 1.5rem 1.5rem 1.5rem;
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.cta-button-secondary:hover {
-    background-color: var(--color-primary);
-    color: white;
-}
-
-/* --- 8. FILOSOFÍA --- */
-
-.philosophy-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.philosophy-features {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.feature {
-    max-width: 300px;
-}
-
-.feature-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.feature h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* --- 9. CONTACTO --- */
-.contact-section {
-    text-align: center;
-    background-color: #f4f4f4;
-    background-image: url('../../rsc/img/stardust.png');
-    background-repeat: repeat;
-    background-size: auto;
-    background-blend-mode: overlay;
-}
-
 .contact-subtitle {
-    max-width: 600px;
-    margin: 0 auto 1rem auto;
+    text-align: center;
+    margin: 0 1rem 1rem 1rem;
+    font-size: 1.8rem;
+    font-weight: bolder;
 }
 
 .contact-notice {
@@ -711,7 +811,7 @@ section {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-left: 4px solid var(--color-primary);
-    animation: pulse 2s ease-in-out infinite;
+    animation: pulse 4s ease-in-out infinite;
 }
 
 @keyframes pulse {
