@@ -1,0 +1,30 @@
+# Archivos que no deben subirse a Git
+
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno (CRÍTICO - CONTIENE CREDENCIALES)
+.env
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+
+# PM2
+.pm2/

@@ -270,8 +270,16 @@ document.addEventListener('DOMContentLoaded', function () {
             checkbox.addEventListener('change', calculateTotal);
         });
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('.submit-btn-bento');
+            const originalBtnText = submitBtn.textContent;
+
+            // Deshabilitar botón y mostrar loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.style.opacity = '0.6';
 
             const formData = new FormData(contactForm);
             const selectedExtras = [];
@@ -289,46 +297,120 @@ document.addEventListener('DOMContentLoaded', function () {
                 day: 'numeric'
             });
 
-            const whatsappMessage = `🎁 *NUEVA COTIZACIÓN - EMOZIONI* 🎁
+            // Preparar datos para el backend
+            const quotationData = {
+                // Producto
+                productName: formData.get('product_interest'),
+                productPrice: selectedProduct ? selectedProduct.price : 0,
+
+                // Destinatario
+                recipientName: formData.get('recipient_name'),
+                recipientAddress: formData.get('delivery_address'),
+                recipientPhone: formData.get('recipient_phone'),
+
+                // Cliente
+                customerName: formData.get('sender_name') || 'Cliente',
+                customerEmail: formData.get('email'),
+                customerPhone: formData.get('sender_phone'),
+                customerOccasion: formData.get('occasion'),
+
+                // Entrega
+                deliveryDate: formattedDate,
+                deliveryTime: formData.get('delivery_time'),
+
+                // Mensaje y extras
+                message: formData.get('message') || '',
+                extras: selectedExtras,
+
+                // Total
+                total: total
+            };
+
+            try {
+                // Llamar al backend
+                const API_URL = 'http://localhost:3000/api/quotation/send';
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(quotationData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    console.log('✅ Notificaciones enviadas:', result);
+
+                    // Mostrar modal de éxito
+                    showSuccessModal();
+                    contactForm.reset();
+                    calculateTotal();
+                } else {
+                    console.error('❌ Error al enviar:', result);
+
+                    // Fallback: Abrir WhatsApp directo si el backend falla
+                    const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
+                    const phoneNumber = '5213313310327';
+                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
+
+                    if (confirm('Hubo un problema al enviar la cotización automáticamente. ¿Deseas enviarla por WhatsApp manualmente?')) {
+                        window.open(whatsappURL, '_blank');
+                    }
+                }
+
+            } catch (error) {
+                console.error('❌ Error de conexión:', error);
+
+                // Fallback: Abrir WhatsApp directo si hay error de conexión
+                const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
+                const phoneNumber = '5213313310327';
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
+
+                alert('No se pudo conectar con el servidor. Se abrirá WhatsApp para enviar tu cotización manualmente.');
+                window.open(whatsappURL, '_blank');
+            } finally {
+                // Restaurar botón
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+                submitBtn.style.opacity = '1';
+            }
+        });
+
+        // Función auxiliar para crear mensaje de WhatsApp (fallback)
+        function createWhatsAppFallbackMessage(data) {
+            return `🎁 *NUEVA COTIZACIÓN - EMOZIONI* 🎁
 
 📦 *DETALLES DEL PEDIDO:*
-👤 Destinatario: ${formData.get('recipient_name')}
-📍 Dirección: ${formData.get('delivery_address')}
-📅 Fecha de entrega: ${formattedDate}
-⏰ Hora de entrega: ${formData.get('delivery_time')}
+👤 Destinatario: ${data.recipientName}
+📍 Dirección: ${data.recipientAddress}
+📅 Fecha de entrega: ${data.deliveryDate}
+⏰ Hora de entrega: ${data.deliveryTime}
 
 🛍️ *PRODUCTO:*
-${formData.get('product_interest')}
+${data.productName}
 
 ✨ *EXTRAS:*
-• ${selectedExtras.length > 0 ? selectedExtras.join('\n• ') : 'Ninguno'}
+• ${data.extras.length > 0 ? data.extras.join('\n• ') : 'Ninguno'}
 
 📞 *CONTACTO:*
-Teléfono destinatario: ${formData.get('recipient_phone')}
-Teléfono remitente: ${formData.get('sender_phone')}
-Email: ${formData.get('email')}
+Teléfono destinatario: ${data.recipientPhone}
+Teléfono remitente: ${data.customerPhone}
+Email: ${data.customerEmail}
 
 🎉 *MOTIVO:*
-${formData.get('occasion')}
+${data.customerOccasion}
 
 💬 *MENSAJE ESPECIAL:*
-${formData.get('message') || 'Sin mensaje adicional'}
+${data.message || 'Sin mensaje adicional'}
 
 💰 *TOTAL A DEPOSITAR:*
-$${total.toLocaleString('es-MX')} MXN
+$${data.total.toLocaleString('es-MX')} MXN
 
 ---
 Enviado desde www.emozioni.com`;
-
-            const phoneNumber = '5213313310327';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-            // window.open(whatsappURL, '_blank');
-
-            showSuccessModal();
-            contactForm.reset();
-            calculateTotal();
-        });
+        }
     }
 
     function showSuccessModal() {

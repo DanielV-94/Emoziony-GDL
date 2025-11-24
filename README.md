@@ -8,11 +8,29 @@
 
 ### 🎯 Características Principales
 
-- **Diseño Responsive**: Totalmente adaptable a dispositivos móviles, tablets y desktop
-- **Efectos Visuales Premium**: Glassmorphism, mesh gradients animados y efectos liquid glass
-- **Formulario Bento Grid**: Sistema modular de contacto con diseño asimétrico
-- **Optimización SEO**: Meta tags completos y estructura semántica
-- **Experiencia de Usuario Superior**: Smooth scroll, animaciones sutiles y navegación intuitiva
+- ✅ **Diseño Responsive**: Totalmente adaptable a dispositivos móviles, tablets y desktop
+- ✅ **Efectos Visuales Premium**: Glassmorphism, mesh gradients animados y efectos liquid glass
+- ✅ **Formulario Bento Grid**: Sistema modular de contacto con diseño asimétrico
+- ✅ **Sistema de Notificaciones Automáticas**: Backend Node.js con 3 flujos simultáneos
+- ✅ **Optimización SEO**: Meta tags completos y estructura semántica
+- ✅ **Experiencia de Usuario Superior**: Smooth scroll, animaciones sutiles y navegación intuitiva
+
+### 🚀 **NUEVO: Sistema de Notificaciones Automáticas**
+
+Cuando un cliente envía una cotización, el sistema ejecuta **3 acciones simultáneas**:
+
+1. 📱 **WhatsApp al dueño** - Notificación instantánea vía Twilio
+2. 📧 **Email al dueño** - Cotización completa con diseño profesional
+3. 📧 **Email al cliente** - Confirmación automática de recepción
+
+**Stack Backend**:
+
+- Node.js + Express
+- Twilio WhatsApp Business API
+- Nodemailer / SendGrid
+- Rate limiting y seguridad (Helmet, CORS)
+
+📖 **Guía completa**: Ver [`QUICK-START.md`](QUICK-START.md) para configuración en 5 minutos
 
 ---
 
