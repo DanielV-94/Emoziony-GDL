@@ -325,106 +325,14 @@
             <p class="contact-notice">
                 ⏰ Los envíos deben agendarse con un día de anticipación.
             </p>
-            <!-- INICIO FORMULARIO ANTERIOR (COMENTADO)
-            <form class="contact-form" id="contact-form">
-                <input type="text" name="recipient_name" placeholder="Nombre del Destinatario *" required />
-                <input type="text" name="delivery_address" placeholder="Dirección de Entrega *" required />
-
-                <div class="form-row">
-                    <input type="date" name="delivery_date" placeholder="Fecha de Entrega *" required />
-                    <input type="time" name="delivery_time" placeholder="Hora de Entrega *" required />
-                </div>
-
-                <select name="product_interest" required>
-                    <option value="" disabled selected>Selecciona el producto *</option>
-                    <option value="Desayuno Premium">
-                        Desayuno Premium - $1,278 MXN
-                    </option>
-                    <option value="Brunch Especial">
-                        Brunch Especial - $1,704 MXN
-                    </option>
-                    <option value="Tarde de Snacks">Tarde de Snacks - $959 MXN</option>
-                    <option value="Cena Romántica">Cena Romántica - $2,556 MXN</option>
-                    <option value="Box de Frutas">Box de Frutas - $746 MXN</option>
-                    <option value="Kit de Vino y Quesos">
-                        Kit de Vino y Quesos - $1,811 MXN
-                    </option>
-                    <option value="Mañana Infantil">
-                        Mañana Infantil - $1,172 MXN
-                    </option>
-                    <option value="Detalle Corporativo">
-                        Detalle Corporativo - $852 MXN
-                    </option>
-                    <option value="Celebración Especial">
-                        Celebración Especial - $2,024 MXN
-                    </option>
-                </select>
-
-                <div class="extras-section">
-                    <label class="extras-title">Extras (Opcional):</label>
-                    <div class="extras-grid">
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Carta Personalizada - $150" />
-                            <span>Carta Personalizada - $150 MXN</span>
-                        </label>
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Foto con Marco - $200" />
-                            <span>Foto con Marco - $200 MXN</span>
-                        </label>
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Globos - $100" />
-                            <span>Globos - $100 MXN</span>
-                        </label>
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Flores - $300" />
-                            <span>Flores - $300 MXN</span>
-                        </label>
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Peluche - $250" />
-                            <span>Peluche - $250 MXN</span>
-                        </label>
-                        <label class="extra-item">
-                            <input type="checkbox" name="extra" value="Vela Aromática - $180" />
-                            <span>Vela Aromática - $180 MXN</span>
-                        </label>
-                    </div>
-                </div>
-
-                <input type="tel" name="recipient_phone" placeholder="Teléfono del Destinatario *" required />
-                <input type="email" name="email" placeholder="Tu Correo Electrónico *" required />
-
-                <select name="occasion" required>
-                    <option value="" disabled selected>Motivo del envío *</option>
-                    <option value="Cumpleaños">Cumpleaños</option>
-                    <option value="Aniversario">Aniversario</option>
-                    <option value="Agradecimiento">Agradecimiento</option>
-                    <option value="Celebración">Celebración</option>
-                    <option value="Romántico">Romántico</option>
-                    <option value="Corporativo">Corporativo</option>
-                    <option value="Otro">Otro</option>
-                </select>
-
-                <textarea name="message" placeholder="Mensaje o instrucciones especiales (Opcional)"
-                    rows="4"></textarea>
-
-                <div class="total-display">
-                    <strong>Total a depositar:</strong>
-                    <span id="total-amount">$0 MXN</span>
-                </div>
-
-                <button type="submit" class="cta-button">
-                    Enviar Cotización por WhatsApp
-                </button>
-            </form>
-            FIN FORMULARIO ANTERIOR (COMENTADO) -->
 
             <!-- INICIO FORMULARIO BENTO MODULAR -->
             <form id="contact-form">
                 <!-- Bento Grid Modular - Diseño Asimétrico -->
                 <div class="bento-grid-modular">
                     <!-- Fila 1 -->
-                    <!-- Card 1: Producto (Wide - 4 columnas) -->
-                    <div class="bento-card bento-wide">
+                    <!-- Card 1: Producto (Full - 6 columnas) -->
+                    <div class="bento-card bento-full">
                         <h3 class="bento-card-title">🎉 Selecciona tu Producto</h3>
                         <select name="product_interest" required>
                             <option value="" disabled selected>Selecciona el producto *</option>
@@ -440,14 +348,8 @@
                         </select>
                     </div>
 
-                    <!-- Card 2: Fecha (Small - 2 columnas) -->
-                    <div class="bento-card bento-small">
-                        <h3 class="bento-card-title">📅 Fecha</h3>
-                        <input type="date" name="delivery_date" placeholder="Fecha de Entrega *" required>
-                    </div>
-
                     <!-- Fila 2 -->
-                    <!-- Card 3: Datos del destinatario (Large - 2x2) -->
+                    <!-- Card 2: Datos del destinatario (Large - 2x2) -->
                     <div class="bento-card bento-large">
                         <h3 class="bento-card-title">🎁 Destinatario</h3>
                         <input type="text" name="recipient_name" placeholder="Nombre del Destinatario *" required>
@@ -455,16 +357,18 @@
                         <input type="tel" name="recipient_phone" placeholder="Teléfono del Destinatario *" required>
                     </div>
 
-                    <!-- Card 4: Hora (Small - 2 columnas) -->
-                    <div class="bento-card bento-small">
-                        <h3 class="bento-card-title">⏰ Hora</h3>
-                        <input type="time" name="delivery_time" placeholder="Hora de Entrega *" required>
+                    <!-- Card 3: Mensaje (Large - 2x2) -->
+                    <div class="bento-card bento-large">
+                        <h3 class="bento-card-title">💬 Mensaje Especial</h3>
+                        <textarea name="message" placeholder="Mensaje o instrucciones especiales (Opcional)"
+                            rows="6"></textarea>
                     </div>
 
-                    <!-- Card 5: Tu Email (Large - 2x2) -->
+                    <!-- Card 4: Tu Email (Large - 2x2) -->
                     <div class="bento-card bento-large">
                         <h3 class="bento-card-title">📧 Tu Información</h3>
                         <input type="email" name="email" placeholder="Tu Correo Electrónico *" required>
+                        <input type="tel" name="sender_phone" placeholder="Tu Celular *" required>
                         <select name="occasion" required>
                             <option value="" disabled selected>Motivo del envío *</option>
                             <option value="Cumpleaños">Cumpleaños</option>
@@ -478,14 +382,14 @@
                     </div>
 
                     <!-- Fila 3 -->
-                    <!-- Card 6: Mensaje (Tall - 2x3) -->
-                    <div class="bento-card bento-tall">
-                        <h3 class="bento-card-title">💬 Mensaje Especial</h3>
-                        <textarea name="message" placeholder="Mensaje o instrucciones especiales (Opcional)"
-                            rows="6"></textarea>
+                    <!-- Card 5: Fecha y Hora (Large - 2x2) -->
+                    <div class="bento-card bento-large">
+                        <h3 class="bento-card-title">📅 Fecha y Hora</h3>
+                        <input type="date" name="delivery_date" placeholder="Fecha de Entrega *" required>
+                        <input type="time" name="delivery_time" placeholder="Hora de Entrega *" required>
                     </div>
 
-                    <!-- Card 7: Extras (Wide - 4 columnas) -->
+                    <!-- Card 6: Extras (Wide - 4 columnas) -->
                     <div class="bento-card bento-wide" style="grid-row: span 2;">
                         <h3 class="bento-card-title">✨ Extras (Opcional)</h3>
                         <div class="extras-grid">
@@ -517,12 +421,23 @@
                     </div>
 
                     <!-- Fila 4 -->
-                    <!-- Card 8: Total y Enviar (Full - 6 columnas) -->
-                    <div class="bento-card bento-highlight-submit">
-                        <div class="total-display-glass">
-                            <strong>Total a depositar:</strong> <span id="total-amount">$0 MXN</span>
+                    <!-- Card 7: Total (Wide - 4 cols, 2 rows) -->
+                    <div class="bento-card bento-wide"
+                        style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <h3 class="bento-card-title">💰 Total</h3>
+                        <div
+                            style="font-size: 2.5rem; font-weight: bold; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                            <span id="total-amount">$0 MXN</span>
                         </div>
-                        <button type="submit" class="submit-btn-bento">Enviar Cotización por WhatsApp</button>
+                    </div>
+
+                    <!-- Card 8: Enviar (Large - 2 cols, 2 rows) -->
+                    <div class="bento-card bento-large"
+                        style="grid-row: span 2; padding: 0; border: none; background: none; box-shadow: none;">
+                        <button type="submit" class="submit-btn-bento"
+                            style="width: 100%; height: 100%; border-radius: 28px;">
+                            Enviar Cotización por WhatsApp
+                        </button>
                     </div>
                 </div>
             </form>
@@ -606,6 +521,13 @@
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                 </div>
                 <div class="footer-logo-track">
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
@@ -645,6 +567,12 @@
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                 </div>
                 <div class="footer-logo-track">
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
@@ -685,25 +613,11 @@
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                </div>
-                <div class="footer-logo-track">
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
-                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
-
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                 </div>
                 <div class="footer-logo-track">
@@ -740,6 +654,17 @@
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                 </div>
                 <div class="footer-logo-track">
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
@@ -759,6 +684,78 @@
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <!-- Duplicado para loop continuo -->
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                </div>
+                <div class="footer-logo-track">
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                </div>
+                <div class="footer-logo-track">
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <!-- Duplicado para loop continuo -->
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
+                    <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/blanco.svg" alt="Emozioni" class="footer-marquee-logo" />
                     <img src="../rsc/logo/azul.svg" alt="Emozioni" class="footer-marquee-logo" />
