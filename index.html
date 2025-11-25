@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#56ABCF" />
 
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="rsc/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="rsc/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="rsc/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="rsc/favicon_io/site.webmanifest">
+
   <!-- SEO Básico -->
   <title>Emozioni Guadalajara - Desayunos y Comidas Sorpresa | Delivering Happiness</title>
   <meta name="description"
@@ -88,7 +94,8 @@
     <!-- HERO SECTION -->
     <section id="inicio" class="hero-section">
       <div class="video-background">
-        <video playsinline autoplay muted loop preload="auto" poster="[URL_DE_IMAGEN_POSTER]">
+        <video playsinline autoplay muted loop preload="auto" poster="[URL_DE_IMAGEN_POSTER]"
+          aria-label="Video de presentación de Emozioni">
           <source src="rsc/video/Diseño sin título.mp4" type="video/mp4" />
           Tu navegador no soporta videos.
         </video>
@@ -188,7 +195,7 @@
         <!-- Producto 5 -->
         <div class="product-card" data-price="$746 MXN"
           data-includes="Mix de Frutas de Temporada,Jugo Detox,Frutos Secos,Miel Pura">
-          <img src="rsc/img/frutas.webp" Box de Frutas Frescas" loading="lazy" />
+          <img src="rsc/img/frutas.webp" alt="Box de Frutas Frescas" loading="lazy" />
           <h3>Box de Frutas</h3>
           <p>
             Una opción saludable y refrescante, llena de colores y vitaminas.
@@ -254,7 +261,7 @@
         <div class="testimonial-item testimonial-hidden">
           <div class="testimonial-video-wrapper">
             <video class="testimonial-video" playsinline muted loop preload="none" loading="lazy"
-              poster="[URL_DE_IMAGEN_POSTER]">
+              poster="[URL_DE_IMAGEN_POSTER]" aria-label="Testimonio de Sofía L.">
               <source data-src="rsc/video/testimonio_1.mp4" type="video/mp4" />
               Tu navegador no soporta videos.
             </video>
@@ -286,7 +293,7 @@
           </div>
           <div class="testimonial-video-wrapper">
             <video class="testimonial-video" playsinline muted loop preload="none" loading="lazy"
-              poster="[URL_DE_IMAGEN_POSTER]">
+              poster="[URL_DE_IMAGEN_POSTER]" aria-label="Testimonio de Marcos R.">
               <source data-src="rsc/video/testimonio_2.mp4" type="video/mp4" />
               Tu navegador no soporta videos.
             </video>
@@ -296,7 +303,7 @@
         <div class="testimonial-item testimonial-hidden">
           <div class="testimonial-video-wrapper">
             <video class="testimonial-video" playsinline muted loop preload="none" loading="lazy"
-              poster="[URL_DE_IMAGEN_POSTER]">
+              poster="[URL_DE_IMAGEN_POSTER]" aria-label="Testimonio de Ana G.">
               <source data-src="rsc/video/testimonio_3.mp4" type="video/mp4" />
               Tu navegador no soporta videos.
             </video>
@@ -327,7 +334,7 @@
           </div>
           <div class="testimonial-video-wrapper">
             <video class="testimonial-video" playsinline muted loop preload="none" loading="lazy"
-              poster="[URL_DE_IMAGEN_POSTER]">
+              poster="[URL_DE_IMAGEN_POSTER]" aria-label="Testimonio de Javier P.">
               <source data-src="rsc/video/testimonio_4.mp4" type="video/mp4" />
               Tu navegador no soporta videos.
             </video>
@@ -354,8 +361,8 @@
           <!-- Fila 1 -->
           <!-- Card 1: Producto (Full - 6 columnas) -->
           <div class="bento-card bento-full">
-            <h3 class="bento-card-title">🎉 Selecciona tu Producto</h3>
-            <select name="product_interest" required>
+            <h3 class="bento-card-title" id="product-label">🎉 Selecciona tu Producto</h3>
+            <select name="product_interest" required aria-labelledby="product-label">
               <option value="" disabled selected>Selecciona el producto *</option>
               <option value="Desayuno Premium">Desayuno Premium - $1,278 MXN</option>
               <option value="Brunch Especial">Brunch Especial - $1,704 MXN</option>
@@ -389,7 +396,7 @@
             <h3 class="bento-card-title">📧 Tu Información</h3>
             <input type="email" name="email" placeholder="Tu Correo Electrónico *" required>
             <input type="tel" name="sender_phone" placeholder="Tu Celular *" required>
-            <select name="occasion" required>
+            <select name="occasion" required aria-label="Motivo del envío">
               <option value="" disabled selected>Motivo del envío *</option>
               <option value="Cumpleaños">Cumpleaños</option>
               <option value="Aniversario">Aniversario</option>

@@ -131,16 +131,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    if (mobileNavToggle) {
+    if (mobileNavToggle && navLinks) {
         mobileNavToggle.addEventListener('click', () => {
-            document.body.classList.toggle('nav-open');
+            navLinks.classList.toggle('active');
+            mobileNavToggle.classList.toggle('active');
         });
-    }
 
-    if (navLinks) {
+        // Cerrar menú al hacer click en un link
         navLinks.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
-                document.body.classList.remove('nav-open');
+                navLinks.classList.remove('active');
+                mobileNavToggle.classList.remove('active');
             }
         });
     }
