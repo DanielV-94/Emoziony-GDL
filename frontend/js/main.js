@@ -273,14 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const submitBtn = contactForm.querySelector('.submit-btn-bento');
-            const originalBtnText = submitBtn.textContent;
-
-            // Deshabilitar botón y mostrar loading
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.style.opacity = '0.6';
-
             const formData = new FormData(contactForm);
             const selectedExtras = [];
 
@@ -298,10 +290,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Preparar datos para el backend
+            const productName = formData.get('product_interest');
+            const productPrice = productPrices[productName] || 0;
+
             const quotationData = {
                 // Producto
-                productName: formData.get('product_interest'),
-                productPrice: selectedProduct ? selectedProduct.price : 0,
+                productName: productName,
+                productPrice: productPrice,
 
                 // Destinatario
                 recipientName: formData.get('recipient_name'),
@@ -326,59 +321,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 total: total
             };
 
-            try {
-                // Llamar al backend
-                const API_URL = 'http://localhost:3000/api/quotation/send';
-
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(quotationData)
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    console.log('✅ Notificaciones enviadas:', result);
-
-                    // Mostrar modal de éxito
-                    showSuccessModal();
-                    contactForm.reset();
-                    calculateTotal();
-                } else {
-                    console.error('❌ Error al enviar:', result);
-
-                    // Fallback: Abrir WhatsApp directo si el backend falla
-                    const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
-                    const phoneNumber = '5213313310327';
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
-
-                    if (confirm('Hubo un problema al enviar la cotización automáticamente. ¿Deseas enviarla por WhatsApp manualmente?')) {
-                        window.open(whatsappURL, '_blank');
-                    }
-                }
-
-            } catch (error) {
-                console.error('❌ Error de conexión:', error);
-
-                // Fallback: Abrir WhatsApp directo si hay error de conexión
-                const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
-                const phoneNumber = '5213313310327';
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
-
-                alert('No se pudo conectar con el servidor. Se abrirá WhatsApp para enviar tu cotización manualmente.');
-                window.open(whatsappURL, '_blank');
-            } finally {
-                // Restaurar botón
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-                submitBtn.style.opacity = '1';
-            }
+            // Mostrar modal primero para previsualización
+            showSuccessModal(quotationData, contactForm);
         });
 
-        // Función auxiliar para crear mensaje de WhatsApp (fallback)
+        // Función auxiliar para crear mensaje de WhatsApp
         function createWhatsAppFallbackMessage(data) {
             return `🎁 *NUEVA COTIZACIÓN - EMOZIONI* 🎁
 
@@ -413,7 +360,7 @@ Enviado desde www.emozioni.com`;
         }
     }
 
-    function showSuccessModal() {
+    function showSuccessModal(quotationData, form) {
         document.body.classList.add('success-modal-open');
         successModal.style.display = 'flex';
         setTimeout(() => successModal.style.opacity = '1', 10);
@@ -421,19 +368,78 @@ Enviado desde www.emozioni.com`;
         startConfetti();
 
         const successCloseBtn = successModal.querySelector('.modal-close');
-        successCloseBtn.addEventListener('click', closeSuccessModal);
-        successModal.addEventListener('click', (e) => {
-            if (e.target === successModal) closeSuccessModal();
-        });
+
+        // Remover listeners anteriores
+        const newCloseBtn = successCloseBtn.cloneNode(true);
+        successCloseBtn.parentNode.replaceChild(newCloseBtn, successCloseBtn);
+
+        newCloseBtn.addEventListener('click', () => closeSuccessModal(quotationData, form));
+
+        // Click fuera del modal
+        const modalClickHandler = (e) => {
+            if (e.target === successModal) {
+                closeSuccessModal(quotationData, form);
+                successModal.removeEventListener('click', modalClickHandler);
+            }
+        };
+        successModal.addEventListener('click', modalClickHandler);
     }
 
-    function closeSuccessModal() {
+    async function closeSuccessModal(quotationData, form) {
         successModal.style.opacity = '0';
         setTimeout(() => {
             successModal.style.display = 'none';
             document.body.classList.remove('success-modal-open');
             stopConfetti();
         }, 300);
+
+        // Enviar cotización al cerrar el modal
+        await sendQuotation(quotationData, form);
+    }
+
+    async function sendQuotation(quotationData, form) {
+        try {
+            // Llamar al backend
+            const API_URL = 'http://localhost:3000/api/quotation/send';
+
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(quotationData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                console.log('✅ Notificaciones enviadas:', result);
+                form.reset();
+                calculateTotal();
+            } else {
+                console.error('❌ Error al enviar:', result);
+
+                // Fallback: Abrir WhatsApp directo si el backend falla
+                const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
+                const phoneNumber = '5213313310327';
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
+
+                if (confirm('Hubo un problema al enviar la cotización automáticamente. ¿Deseas enviarla por WhatsApp manualmente?')) {
+                    window.open(whatsappURL, '_blank');
+                }
+            }
+
+        } catch (error) {
+            console.error('❌ Error de conexión:', error);
+
+            // Fallback: Abrir WhatsApp directo si hay error de conexión
+            const fallbackMessage = createWhatsAppFallbackMessage(quotationData);
+            const phoneNumber = '5213313310327';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(fallbackMessage)}`;
+
+            alert('No se pudo conectar con el servidor. Se abrirá WhatsApp para enviar tu cotización manualmente.');
+            window.open(whatsappURL, '_blank');
+        }
     }
 
     // --- CONFETTI ANIMATION ---
