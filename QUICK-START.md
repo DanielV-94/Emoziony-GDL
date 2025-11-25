@@ -170,7 +170,7 @@ Deberías ver:
 
 ### **2. Prueba Completa**
 
-1. **Abre** `frontend/index.html` en el navegador (con Live Server)
+1. **Abre** `index.html` en el navegador (con Live Server)
 2. **Llena** el formulario de cotización con datos de prueba
 3. **Haz clic** en "Enviar Cotización"
 4. **Espera** unos segundos (loading)

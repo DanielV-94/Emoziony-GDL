@@ -256,8 +256,8 @@ emozioni/
 
 2. **Abrir con Live Server**
 
-   - Abre `frontend/index.html` con tu servidor local
-   - O usa la extensión "Five Server" en VS Code
+- Abre `index.html` con tu servidor local
+- O usa la extensión "Five Server" en VS Code
 
 3. **Configurar URLs**
 
