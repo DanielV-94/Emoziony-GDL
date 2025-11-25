@@ -361,11 +361,13 @@ Enviado desde www.emozioni.com`;
     }
 
     function showSuccessModal(quotationData, form) {
+        // Primero añadir la clase al body para activar los estilos CSS
         document.body.classList.add('success-modal-open');
-        successModal.style.display = 'flex';
-        setTimeout(() => successModal.style.opacity = '1', 10);
 
-        startConfetti();
+        // Pequeño delay para asegurar que el CSS se aplique
+        setTimeout(() => {
+            startConfetti();
+        }, 50);
 
         const successCloseBtn = successModal.querySelector('.modal-close');
 
@@ -386,10 +388,11 @@ Enviado desde www.emozioni.com`;
     }
 
     async function closeSuccessModal(quotationData, form) {
-        successModal.style.opacity = '0';
+        // Primero remover la clase para activar la transición CSS
+        document.body.classList.remove('success-modal-open');
+
+        // Esperar a que termine la transición CSS antes de detener confetti
         setTimeout(() => {
-            successModal.style.display = 'none';
-            document.body.classList.remove('success-modal-open');
             stopConfetti();
         }, 300);
 
