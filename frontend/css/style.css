@@ -456,8 +456,9 @@ section {
 
 .product-stamp {
     position: absolute;
-    opacity: 0.7;
+    opacity: 0.9;
     filter: blur(1px);
+    mix-blend-mode: multiply;
 }
 
 .product-stamp-1 {
@@ -627,6 +628,7 @@ section {
     width: 60vw;
     max-width: 700px;
     filter: blur(1px);
+    mix-blend-mode: screen;
 }
 
 .stamp-bg-1 {
