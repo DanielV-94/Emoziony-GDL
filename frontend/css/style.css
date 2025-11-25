@@ -1857,12 +1857,13 @@ section {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     padding: 2rem;
 }
 
@@ -1889,14 +1890,14 @@ body.success-modal-open {
 
 /* Mostrar solo el modal de producto cuando está activo */
 body.modal-open #product-modal {
-    display: flex;
     opacity: 1;
+    visibility: visible;
 }
 
 /* Mostrar solo el modal de éxito cuando está activo */
 body.success-modal-open #success-modal {
-    display: flex;
     opacity: 1;
+    visibility: visible;
 }
 
 body.modal-open .modal-content,

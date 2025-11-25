@@ -1,6 +1,7 @@
 // --- EMOZIONI MAIN.JS ---
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('🚀 JavaScript cargado correctamente');
 
     // --- HERO TITLE ANIMATION (INFINITE LOOP) ---
     if (typeof gsap !== 'undefined' && typeof SplitType !== 'undefined') {
@@ -231,6 +232,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalAmountEl = document.getElementById('total-amount');
     const successModal = document.getElementById('success-modal');
 
+    console.log('🔍 Elementos encontrados:');
+    console.log('- contactForm:', contactForm);
+    console.log('- totalAmountEl:', totalAmountEl);
+    console.log('- successModal:', successModal);
+
     const productPrices = {
         'Desayuno Premium': 1278,
         'Brunch Especial': 1704,
@@ -272,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log('📝 Formulario enviado');
 
             const formData = new FormData(contactForm);
             const selectedExtras = [];
@@ -322,6 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             // Mostrar modal primero para previsualización
+            console.log('📋 Mostrando modal con datos:', quotationData);
             showSuccessModal(quotationData, contactForm);
         });
 
@@ -361,8 +369,14 @@ Enviado desde www.emozioni.com`;
     }
 
     function showSuccessModal(quotationData, form) {
+        console.log('🎉 showSuccessModal llamada');
+        console.log('Modal element:', successModal);
+        console.log('Body classes antes:', document.body.classList);
+
         // Primero añadir la clase al body para activar los estilos CSS
         document.body.classList.add('success-modal-open');
+
+        console.log('Body classes después:', document.body.classList);
 
         // Pequeño delay para asegurar que el CSS se aplique
         setTimeout(() => {
