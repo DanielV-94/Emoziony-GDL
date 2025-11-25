@@ -974,6 +974,16 @@ section {
     grid-row: span 2;
 }
 
+.bento-wide {
+    grid-column: span 4;
+    grid-row: span 1;
+}
+
+.bento-full {
+    grid-column: span 6;
+    grid-row: span 1;
+}
+
 /* Estilos globales para el botón de submit bento */
 .submit-btn-bento {
     position: relative;
