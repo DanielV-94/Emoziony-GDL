@@ -247,11 +247,13 @@ h6 {
 .cta-button {
     font-family: var(--font-primary);
     background-color: var(--color-primary);
-    color: white;
+    mix-blend-mode: screen;
+    color: var(--color-background);
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
