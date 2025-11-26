@@ -32,7 +32,6 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    /* Optimización de carga */
 }
 
 @font-face {
@@ -41,23 +40,17 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    /* Optimización de carga */
 }
 
 :root {
-    /* Tipografía */
     --font-primary: 'Avenir', sans-serif;
     --font-display: 'Vendetta', cursive;
-
-    /* Colores de Marca */
     --color-primary: #2e86a6;
     --color-primary-neon: #29D5FF;
     --color-secondary: #444243;
     --color-text: #333;
     --color-background: #FFFFFF;
     --color-light-gray: #f4f4f4;
-
-    /* Layout */
     --header-height: 80px;
 }
 
@@ -72,7 +65,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* Scroll suave en toda la página */
     font-size: 16px;
 }
 
@@ -81,17 +73,14 @@ body {
     color: var(--color-text);
     line-height: 1.6;
     overflow-x: hidden;
-    /* Prevenir scroll horizontal */
 }
 
-/* Aumentar el tamaño de los párrafos principales para legibilidad */
 .philosophy-content p,
 .feature p,
 .product-card p,
 .contact-subtitle {
     font-size: 1.15rem;
     line-height: 1.7;
-    /* Ajustar interlineado para el nuevo tamaño */
 }
 
 h1,
@@ -108,26 +97,22 @@ h6 {
 
 .section-title {
     font-size: 5rem;
-    /* Aumentar tamaño para mayor impacto */
     text-align: center;
     margin-bottom: 3rem;
     color: var(--color-primary);
     text-shadow: 4px 4px 0px var(--color-secondary), 8px 8px 15px rgba(0, 0, 0, 0.3);
-    /* Sombra más pronunciada */
 }
 
 /* --- 3. HEADER Y NAVEGACIÓN --- */
 .main-header {
     position: fixed;
     top: 1rem;
-    /* Margen superior para efecto flotante */
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 2rem);
     max-width: 1200px;
     height: calc(var(--header-height) - 10px);
     background-color: rgba(255, 255, 255, 0.49);
-    /* Efecto cristalino */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
@@ -136,7 +121,6 @@ h6 {
     z-index: 1000;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 50px;
-    /* Bordes súper redondeados */
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
     transition: all 0.3s ease;
 }
@@ -185,14 +169,12 @@ h6 {
     display: block;
 }
 
-/* Ocultar elementos de móvil en desktop */
 .logo-mobile,
 .main-nav .nav-links,
 .mobile-nav-toggle {
     display: none;
 }
 
-/* Estilos para nav-links (menú móvil) */
 .nav-links {
     position: fixed;
     top: 80px;
@@ -262,10 +244,8 @@ h6 {
     box-shadow: 0 4px 15px rgba(86, 171, 207, 0.4);
 }
 
-/* Estilos para el botón de hamburguesa */
 .mobile-nav-toggle {
     display: none;
-    /* Oculto en desktop */
     background: none;
     border: none;
     cursor: pointer;
@@ -301,7 +281,6 @@ h6 {
     transform: translateY(8px);
 }
 
-/* Animación del hamburger cuando está activo */
 .mobile-nav-toggle.active .hamburger {
     background: transparent;
 }
@@ -314,7 +293,6 @@ h6 {
     transform: rotate(-45deg);
 }
 
-/* Estado activo para la animación de la hamburguesa a "X" */
 .nav-open .hamburger {
     background: transparent;
 }
@@ -326,7 +304,6 @@ h6 {
 .nav-open .hamburger::after {
     transform: rotate(-45deg);
 }
-
 
 /* --- 4. HERO SECTION --- */
 .hero-section {
@@ -363,7 +340,6 @@ h6 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Overlay oscuro para legibilidad */
 }
 
 .hero-content {
@@ -376,10 +352,8 @@ h6 {
     font-size: 5rem;
     color: white;
     -webkit-text-stroke: 1px rgba(35, 34, 34, 0.3);
-    /* Creamos el contorno blanco */
     margin-bottom: 1rem;
     overflow: hidden;
-    /* Para una animación de entrada de texto limpia */
 }
 
 .hero-subtitle {
@@ -397,7 +371,6 @@ section {
 .testimonials-section,
 .contact-section {
     max-width: 100%;
-    /* Ocupar todo el ancho */
     padding-left: calc((100% - 1200px) / 2);
     padding-right: calc((100% - 1200px) / 2);
     background-color: #fffdfdff;
@@ -536,7 +509,6 @@ section {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Glow neon sutil debajo de la card */
 .product-card::before {
     content: '';
     position: absolute;
@@ -607,11 +579,8 @@ section {
 /* --- 6. TESTIMONIOS --- */
 .testimonials-section {
     position: relative;
-    /* Añadido para posicionar los sellos */
     overflow: hidden;
-    /* Cambiado de overflow-x a overflow */
     min-height: 100vh;
-    /* Ensure enough height for pinning */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -665,9 +634,7 @@ section {
     gap: 3rem;
     padding: 2rem;
     position: relative;
-    /* Añadido para estar sobre los sellos */
     z-index: 1;
-    /* Añadido para estar sobre los sellos */
 }
 
 .testimonial-item {
@@ -696,7 +663,6 @@ section {
     z-index: 1;
 }
 
-/* Efecto de brillo líquido animado */
 .testimonial-item::before {
     content: '';
     position: absolute;
@@ -713,7 +679,6 @@ section {
     z-index: -1;
 }
 
-/* Capa de reflejos */
 .testimonial-item::after {
     content: '';
     position: absolute;
@@ -770,7 +735,6 @@ section {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* Hacer visible el primer testimonio por defecto */
 .testimonial-item:first-child {
     opacity: 1;
     transform: translateY(0);
@@ -781,7 +745,6 @@ section {
     min-width: 250px;
     max-width: 400px;
     height: 320px;
-    /* Altura fija para los videos */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
@@ -806,7 +769,6 @@ section {
     font-style: italic;
     margin-bottom: 1rem;
     font-size: 1.4rem;
-    /* Ajuste para que sea más legible */
     line-height: 1.6;
     color: var(--color-secondary);
 }
@@ -902,7 +864,6 @@ section {
 }
 
 /* --- 8. FORMULARIO BENTO GRID MODULAR --- */
-/* Animaciones de gradiente mesh */
 @keyframes meshGradient {
 
     0%,
@@ -963,7 +924,6 @@ section {
     }
 }
 
-/* Bento Grid Modular - Ancho Completo */
 .bento-grid-modular {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -979,7 +939,6 @@ section {
     background: transparent;
 }
 
-/* Bento Cards - Efecto Glassmorphism con Mesh Gradient Animado */
 .bento-card {
     background:
         radial-gradient(at 0% 0%, rgba(238, 250, 255, 0.65) 0%, transparent 40%),
@@ -1005,10 +964,8 @@ section {
     overflow: hidden;
     will-change: background-position;
     mix-blend-mode: soft-light;
-    /* Optimización GPU */
 }
 
-/* Capa de overlay con animación secundaria */
 .bento-card::before {
     content: '';
     position: absolute;
@@ -1025,7 +982,6 @@ section {
     opacity: 0.4;
     pointer-events: none;
     will-change: transform, opacity;
-    /* Optimización GPU */
 }
 
 .bento-card-title {
@@ -1043,7 +999,6 @@ section {
     letter-spacing: 0.02em;
 }
 
-/* Distribución Modular - Grid de 6 columnas con variaciones */
 .bento-large {
     grid-column: span 2;
     grid-row: span 2;
@@ -1059,7 +1014,6 @@ section {
     grid-row: span 1;
 }
 
-/* Estilos globales para el botón de submit bento */
 .submit-btn-bento {
     position: relative;
     align-items: center;
@@ -1126,7 +1080,6 @@ section {
     z-index: 1;
 }
 
-/* Sección de Total y Botón fuera del Bento Grid */
 .form-footer-section {
     width: 100%;
     max-width: 1100px;
@@ -1303,7 +1256,6 @@ section {
     left: 100%;
 }
 
-/* Ocultar checkbox original */
 .bento-card .extra-item input[type="checkbox"] {
     position: absolute;
     opacity: 0;
@@ -1312,7 +1264,6 @@ section {
     pointer-events: none;
 }
 
-/* Toggle Switch Container */
 .bento-card .extra-item .toggle-switch {
     position: relative;
     width: 48px;
@@ -1327,7 +1278,6 @@ section {
     flex-shrink: 0;
 }
 
-/* Toggle Slider */
 .bento-card .extra-item .toggle-slider {
     position: absolute;
     top: 2px;
@@ -1343,7 +1293,6 @@ section {
         0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Toggle Switch cuando está checked */
 .bento-card .extra-item input[type="checkbox"]:checked~.toggle-switch {
     background: linear-gradient(135deg,
             var(--color-primary) 0%,
@@ -1363,7 +1312,6 @@ section {
         0 0 0 2px rgba(41, 213, 255, 0.3);
 }
 
-/* Extra Label */
 .bento-card .extra-item .extra-label {
     font-size: 1rem;
     font-weight: 500;
@@ -1380,7 +1328,6 @@ section {
 
 /* --- 8a. RESPONSIVE BENTO GRID --- */
 
-/* Desktop Grande → Laptop (1400px): 6 → 4 columnas */
 @media (max-width: 1400px) {
     .bento-grid-modular {
         grid-template-columns: repeat(4, 1fr);
@@ -1400,7 +1347,6 @@ section {
     }
 }
 
-/* Laptop → Tablet (1024px): 4 → 2 columnas */
 @media (max-width: 1024px) {
     .bento-grid-modular {
         grid-template-columns: repeat(2, 1fr);
@@ -1422,7 +1368,6 @@ section {
     }
 }
 
-/* Tablet → Mobile (768px): 2 → 1 columna */
 @media (max-width: 768px) {
     .bento-grid-modular {
         grid-template-columns: 1fr;
@@ -1466,8 +1411,6 @@ section {
     }
 }
 
-/* --- FIN NUEVO FORMULARIO BENTO --- */
-
 /* --- 10. FOOTER --- */
 .main-footer {
     background-color: var(--color-secondary);
@@ -1480,7 +1423,6 @@ section {
         inset 0 0 60px rgba(0, 0, 0, 0.3);
 }
 
-/* Overlay oscuro para profundidad adicional */
 .main-footer::before {
     content: '';
     position: absolute;
@@ -1493,7 +1435,6 @@ section {
     pointer-events: none;
 }
 
-/* Fondo animado de logos en el footer */
 .footer-logo-background {
     position: absolute;
     top: 0;
@@ -1587,7 +1528,6 @@ section {
     z-index: 10;
 }
 
-/* Efecto vignette adicional en los bordes */
 .main-footer::after {
     content: '';
     position: absolute;
@@ -1601,17 +1541,15 @@ section {
     pointer-events: none;
 }
 
-/* Divisores */
 .footer-divider {
     width: 100%;
     height: 1px;
-    background-color: #555;
+    background-color: #ffffffff;
     margin: 0.5rem 0;
     position: relative;
     z-index: 2;
 }
 
-/* Grid principal */
 .footer-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -1636,7 +1574,6 @@ section {
     width: 100%;
 }
 
-/* Navegación y Contacto con efecto glassmorphism */
 .footer-nav,
 .footer-contact,
 .footer-social-column {
@@ -1654,7 +1591,6 @@ section {
     transform: translateZ(0);
 }
 
-/* Efecto de elevación sutil */
 .footer-nav::before,
 .footer-contact::before,
 .footer-social-column::before {
@@ -1722,7 +1658,6 @@ section {
     text-align: center;
 }
 
-/* Columna de redes sociales central */
 .footer-social-column {
     display: flex;
     flex-direction: column;
@@ -1775,7 +1710,6 @@ section {
     transform: scale(1.1);
 }
 
-/* Footer bottom: Copyright y Legal en la misma línea */
 .footer-bottom {
     display: flex;
     justify-content: space-between;
@@ -1922,7 +1856,6 @@ section {
     border-top: 1px solid #ddd;
 }
 
-/* --- 10a. MODAL DE PRODUCTO --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1955,7 +1888,6 @@ section {
     transition: transform 0.3s ease;
     display: flex;
     overflow: hidden;
-    /* Para que la imagen no se salga de los bordes redondeados */
 }
 
 body.modal-open,
@@ -1963,13 +1895,11 @@ body.success-modal-open {
     overflow: hidden;
 }
 
-/* Mostrar solo el modal de producto cuando está activo */
 body.modal-open #product-modal {
     opacity: 1;
     visibility: visible;
 }
 
-/* Mostrar solo el modal de éxito cuando está activo */
 body.success-modal-open #success-modal {
     opacity: 1;
     visibility: visible;
@@ -1991,7 +1921,6 @@ body.success-modal-open .modal-content {
     cursor: pointer;
     transition: color 0.3s ease;
     z-index: 10;
-    /* Por encima del contenido derecho */
 }
 
 .modal-close:hover {
@@ -2017,7 +1946,6 @@ body.success-modal-open .modal-content {
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* Para scroll si el contenido es largo */
 }
 
 .modal-title {
@@ -2081,7 +2009,6 @@ body.success-modal-open .modal-content {
     display: inline-block;
 }
 
-/* --- 10b. MODAL DE ÉXITO --- */
 .success-modal-content {
     max-width: 600px;
     height: auto;
@@ -2135,7 +2062,6 @@ body.success-modal-open .modal-content {
     line-height: 1.6;
 }
 
-/* Sección de datos de pago */
 .payment-info {
     margin-top: 2rem;
     width: 100%;
@@ -2166,7 +2092,6 @@ body.success-modal-open .modal-content {
 }
 
 /* --- AJUSTES SECCIÓN DE CONTACTO --- */
-/* Ajuste para que la sección de contacto permita ancho completo para el bento grid */
 .contact-section {
     padding-left: 0;
     padding-right: 0;
@@ -2190,7 +2115,6 @@ body.success-modal-open .modal-content {
 
 /* --- 12. ACCESIBILIDAD --- */
 
-/* Respetar preferencia de movimiento reducido (accesibilidad) */
 @media (prefers-reduced-motion: reduce) {
 
     *,
