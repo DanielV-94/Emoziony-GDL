@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- HERO TITLE ANIMATION (INFINITE LOOP) ---
     if (typeof gsap !== 'undefined' && typeof SplitType !== 'undefined') {
         const heroTitle = document.querySelector('.hero-title');
+        const heroTitlee = document.querySelector('.hero-titlee');
         const heroSubtitle = document.querySelector('.hero-subtitle');
         const heroButton = document.querySelector('.hero-content .cta-button');
 
@@ -27,6 +28,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 delay: 0.5,
                 repeat: -1,
                 repeatDelay: 3,
+                yoyo: true
+            });
+        }
+
+        if (heroTitlee) {
+            const split = new SplitType(heroTitlee, { types: 'chars' });
+            const chars = split.chars;
+
+            gsap.fromTo(chars, {
+                opacity: 0,
+                y: 100,
+                rotationX: -90
+            }, {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 1,
+                ease: "back.out(1.7)",
+                stagger: 0.03,
+                delay: 0.8,
+                repeat: -1,
+                repeatDelay: 3.3,
                 yoyo: true
             });
         }
